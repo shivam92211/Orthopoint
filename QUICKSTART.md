@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get your Musical Instruments Store up and running in minutes!
+Get your Surgical Instruments Store up and running in minutes!
 
 ## Prerequisites Checklist
 

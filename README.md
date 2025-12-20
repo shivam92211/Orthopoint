@@ -1,6 +1,6 @@
-# Musical Instruments Store
+# Surgical Instruments Store
 
-A full-stack e-commerce website for showcasing and selling musical instruments, built with Next.js 14+, TypeScript, MongoDB, and Cloudinary.
+A full-stack e-commerce website for showcasing and selling surgical instruments, built with Next.js 14+, TypeScript, MongoDB, and Cloudinary.
 
 ## Features
 

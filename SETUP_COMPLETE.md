@@ -1,6 +1,6 @@
 # 🎉 Setup Complete!
 
-Your Musical Instruments Store has been successfully created!
+Your Surgical Instruments Store has been successfully created!
 
 ## ✅ What's Been Built
 
@@ -268,10 +268,10 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for:
 
 ## 🎉 You're All Set!
 
-Your musical instruments store is ready to use. Start by:
+Your surgical instruments store is ready to use. Start by:
 1. Configuring your environment variables
 2. Running the seed scripts
 3. Starting the dev server
 4. Adding your first instrument
 
-Happy selling! 🎵🎸🎹🥁
+Happy selling! 🏥💉🔬🩺
