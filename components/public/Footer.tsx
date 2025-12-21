@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 export default function Footer() {
@@ -9,21 +10,22 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="bg-white text-primary p-2 rounded-lg">
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19.5 3.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2L7.5 3.5L6 2v14H3v3c0 1.66 1.34 3 3 3h12c1.66 0 3-1.34 3-3V2l-1.5 1.5zM15 20H6c-.55 0-1-.45-1-1v-1h10v2zm4-1c0 .55-.45 1-1 1s-1-.45-1-1v-3H8V5h11v14z"/>
-                  <path d="M10 7h6v2h-6zm0 4h6v2h-6z"/>
-                </svg>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="relative w-12 h-12 bg-white rounded-lg overflow-hidden">
+                <Image
+                  src="/logo.jpg"
+                  alt="OrthoPoint Logo"
+                  fill
+                  className="object-contain p-1"
+                />
               </div>
               <div>
                 <div className="font-bold text-xl">OrthoPoint</div>
-                <div className="text-xs text-primary-foreground/80">Surgical Excellence</div>
+                <div className="text-xs text-primary-foreground/80">Orthopaedic Excellence</div>
               </div>
             </div>
             <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4">
-              Your trusted partner for premium surgical instruments and medical equipment.
-              ISO 13485 certified with 20+ years of experience.
+              Your trusted partner for premium orthopaedic instruments with 15+ years of experience.
             </p>
             <div className="flex gap-3">
               <a
@@ -95,27 +97,27 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Surgical Instruments
+                  Bone Screws & Plates
                 </Link>
               </li>
               <li>
                 <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Orthopedic Equipment
+                  Joint Replacement
                 </Link>
               </li>
               <li>
                 <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Dental Instruments
+                  Trauma Instruments
                 </Link>
               </li>
               <li>
                 <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Diagnostic Equipment
+                  Spinal Implants
                 </Link>
               </li>
               <li>
                 <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Medical Supplies
+                  Arthroscopy Tools
                 </Link>
               </li>
             </ul>
@@ -134,31 +136,24 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+919324275387"
                   className="flex items-center gap-3 text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
                 >
                   <Phone className="h-5 w-5" />
-                  +1 (234) 567-890
+                  +91 9324275387 / +91 9987514573
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:info@orthopoint.com"
+                  href="mailto:orthopoint.in@gmail.com"
                   className="flex items-center gap-3 text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
                 >
                   <Mail className="h-5 w-5" />
-                  info@orthopoint.com
+                  orthopoint.in@gmail.com
                 </a>
               </li>
             </ul>
 
-            {/* Certifications */}
-            <div className="mt-6 space-y-2">
-              <div className="bg-white/10 rounded-lg p-3 text-xs">
-                <div className="font-bold mb-1">ISO 13485:2016</div>
-                <div className="text-primary-foreground/70">Medical Devices Certified</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 # Deployment Guide
 
-Complete guide to deploying your Surgical Instruments Store to production.
+Complete guide to deploying your Orthopaedic Instruments Store to production.
 
 ## Option 1: Vercel (Recommended)
 
@@ -18,18 +18,18 @@ Vercel is created by the Next.js team and provides the best experience for Next.
 ```bash
 git init
 git add .
-git commit -m "Initial commit: Surgical Instruments Store"
+git commit -m "Initial commit: Orthopaedic Instruments Store"
 ```
 
 2. Create a new repository on GitHub:
    - Go to github.com
    - Click "New Repository"
-   - Name it "surgical-instruments-store"
+   - Name it "orthopaedic-instruments-store"
    - Don't initialize with README (you already have one)
 
 3. Push your code:
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/surgical-instruments-store.git
+git remote add origin https://github.com/YOUR_USERNAME/orthopaedic-instruments-store.git
 git branch -M main
 git push -u origin main
 ```
@@ -93,7 +93,7 @@ ADMIN_PASSWORD=SecurePassword123!
 
 1. Wait for deployment to complete (2-3 minutes)
 
-2. Note your deployment URL (e.g., `https://surgical-instruments-store.vercel.app`)
+2. Note your deployment URL (e.g., `https://orthopaedic-instruments-store.vercel.app`)
 
 3. Update `NEXTAUTH_URL` in Vercel:
    - Go to Project Settings → Environment Variables
@@ -167,8 +167,8 @@ sudo apt install -y nginx
 3. **Deploy Application:**
 ```bash
 # Clone repository
-git clone https://github.com/YOUR_USERNAME/surgical-instruments-store.git
-cd surgical-instruments-store
+git clone https://github.com/YOUR_USERNAME/orthopaedic-instruments-store.git
+cd orthopaedic-instruments-store
 
 # Install dependencies
 npm install

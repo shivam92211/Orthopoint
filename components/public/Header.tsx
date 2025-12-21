@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, Phone, Mail, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,17 +16,14 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center gap-6">
-              <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-secondary transition-colors">
+              <a href="tel:+919324275387" className="flex items-center gap-2 hover:text-secondary transition-colors">
                 <Phone className="h-4 w-4" />
-                <span className="hidden sm:inline">+1 (234) 567-890</span>
+                <span className="hidden sm:inline">+91 9324275387 / +91 9987514573</span>
               </a>
-              <a href="mailto:info@orthopoint.com" className="flex items-center gap-2 hover:text-secondary transition-colors">
+              <a href="mailto:orthopoint.in@gmail.com" className="flex items-center gap-2 hover:text-secondary transition-colors">
                 <Mail className="h-4 w-4" />
-                <span className="hidden sm:inline">info@orthopoint.com</span>
+                <span className="hidden sm:inline">orthopoint.in@gmail.com</span>
               </a>
-            </div>
-            <div className="text-xs sm:text-sm">
-              ✓ ISO 13485 Certified Medical Equipment
             </div>
           </div>
         </div>
@@ -35,16 +33,19 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-primary text-primary-foreground p-2 rounded-lg group-hover:bg-primary/90 transition-colors">
-              <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19.5 3.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2L7.5 3.5L6 2v14H3v3c0 1.66 1.34 3 3 3h12c1.66 0 3-1.34 3-3V2l-1.5 1.5zM15 20H6c-.55 0-1-.45-1-1v-1h10v2zm4-1c0 .55-.45 1-1 1s-1-.45-1-1v-3H8V5h11v14z"/>
-                <path d="M10 7h6v2h-6zm0 4h6v2h-6z"/>
-              </svg>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative w-12 h-12 rounded-lg overflow-hidden group-hover:scale-105 transition-transform">
+              <Image
+                src="/logo.jpg"
+                alt="OrthoPoint Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
             <div>
               <div className="font-bold text-xl text-primary">OrthoPoint</div>
-              <div className="text-xs text-muted-foreground -mt-1">Surgical Excellence</div>
+              <div className="text-xs text-muted-foreground -mt-1">Orthopaedic Excellence</div>
             </div>
           </Link>
 
@@ -69,12 +70,16 @@ export default function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="outline" size="sm">
-              Request Quote
+            <Button variant="outline" size="sm" asChild>
+              <a href="https://wa.me/918108419746?text=Hi,%20I%20would%20like%20to%20request%20a%20quote%20for%20orthopaedic%20instruments." target="_blank" rel="noopener noreferrer">
+                Request Quote
+              </a>
             </Button>
-            <Button size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <Phone className="h-4 w-4 mr-2" />
-              Call Now
+            <Button size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground" asChild>
+              <a href="tel:+919987514573">
+                <Phone className="h-4 w-4 mr-2" />
+                Call Now
+              </a>
             </Button>
           </div>
 
@@ -128,12 +133,16 @@ export default function Header() {
               Contact
             </Link>
             <div className="pt-4 space-y-2">
-              <Button variant="outline" className="w-full">
-                Request Quote
+              <Button variant="outline" className="w-full" asChild>
+                <a href="https://wa.me/918108419746?text=Hi,%20I%20would%20like%20to%20request%20a%20quote%20for%20orthopaedic%20instruments." target="_blank" rel="noopener noreferrer">
+                  Request Quote
+                </a>
               </Button>
-              <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                <Phone className="h-4 w-4 mr-2" />
-                Call Now
+              <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" asChild>
+                <a href="tel:+919987514573">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Call Now
+                </a>
               </Button>
             </div>
           </nav>

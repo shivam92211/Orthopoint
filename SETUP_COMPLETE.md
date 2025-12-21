@@ -1,6 +1,6 @@
 # 🎉 Setup Complete!
 
-Your Surgical Instruments Store has been successfully created!
+Your Orthopaedic Instruments Store has been successfully created!
 
 ## ✅ What's Been Built
 
@@ -268,7 +268,7 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for:
 
 ## 🎉 You're All Set!
 
-Your surgical instruments store is ready to use. Start by:
+Your orthopaedic instruments store is ready to use. Start by:
 1. Configuring your environment variables
 2. Running the seed scripts
 3. Starting the dev server

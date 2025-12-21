@@ -55,10 +55,10 @@ export default function CategoryShowcase() {
             PRODUCT CATEGORIES
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Browse by Surgical Specialty
+            Browse by Orthopaedic Specialty
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore our comprehensive range of surgical instruments and medical equipment for every specialty
+            Explore our comprehensive range of orthopaedic instruments for every specialty
           </p>
         </div>
 

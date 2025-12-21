@@ -130,10 +130,10 @@ export default function HomePage() {
               OUR PRODUCTS
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Premium Surgical Instruments
+              Premium Orthopaedic Instruments
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Browse our extensive collection of quality-certified medical equipment
+              Browse our extensive collection of quality-certified orthopaedic instruments
             </p>
           </div>
 

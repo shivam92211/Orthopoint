@@ -1,15 +1,25 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Shield, Award, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
     <div className="relative bg-gradient-to-br from-primary via-primary-light to-primary overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+      {/* Background Images with Overlay */}
+      <div className="absolute inset-0">
+        {/* Single Image Background */}
+        <div className="absolute inset-0 opacity-70">
+          <Image
+            src="/ortho1.jpg"
+            alt="Orthopaedic Instruments"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-light/85 to-primary/90" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
@@ -18,17 +28,16 @@ export default function Hero() {
           <div className="text-white">
             <div className="inline-block bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-full px-4 py-2 mb-6">
               <span className="text-secondary-foreground font-medium text-sm">
-                ✓ ISO Certified Medical Equipment
+                ✓ Quality Orthopaedic Instruments
               </span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Premium Surgical Instruments for Healthcare Professionals
+              Premium Orthopaedic Instruments for Healthcare Professionals
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
-              Trusted by hospitals, clinics, and surgeons worldwide. Quality-certified surgical equipment,
-              orthopedic instruments, and medical supplies delivered with precision.
+              Trusted by hospitals, clinics, and surgeons worldwide. Quality instruments delivered with precision.
             </p>
 
             {/* CTA Buttons */}
@@ -44,8 +53,11 @@ export default function Hero() {
                 size="lg"
                 variant="outline"
                 className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+                asChild
               >
-                Request Quote
+                <a href="https://wa.me/918108419746?text=Hi,%20I%20would%20like%20to%20request%20a%20quote%20for%20orthopaedic%20instruments." target="_blank" rel="noopener noreferrer">
+                  Request Quote
+                </a>
               </Button>
             </div>
 
@@ -56,8 +68,8 @@ export default function Hero() {
                   <Shield className="h-6 w-6 text-secondary" />
                 </div>
                 <div>
-                  <div className="font-bold text-lg">ISO 13485</div>
-                  <div className="text-sm text-white/80">Certified</div>
+                  <div className="font-bold text-lg">Premium</div>
+                  <div className="text-sm text-white/80">Quality</div>
                 </div>
               </div>
 
@@ -66,7 +78,7 @@ export default function Hero() {
                   <Award className="h-6 w-6 text-secondary" />
                 </div>
                 <div>
-                  <div className="font-bold text-lg">20+ Years</div>
+                  <div className="font-bold text-lg">15+ Years</div>
                   <div className="text-sm text-white/80">Experience</div>
                 </div>
               </div>
@@ -86,11 +98,16 @@ export default function Hero() {
           {/* Right Image/Visual */}
           <div className="relative hidden md:block">
             <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-              {/* Placeholder for surgical instruments image */}
-              <div className="aspect-square bg-gradient-to-br from-white/20 to-white/5 rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">🏥</div>
-                  <p className="text-white/80 text-sm">Professional Medical Equipment</p>
+              {/* Logo Display */}
+              <div className="aspect-square bg-white rounded-2xl flex items-center justify-center p-8 shadow-xl">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/logo.jpg"
+                    alt="OrthoPoint - Professional Orthopaedic Instruments"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
                 </div>
               </div>
 
@@ -109,7 +126,7 @@ export default function Hero() {
 
               <div className="absolute -top-6 -right-6 bg-accent rounded-xl shadow-2xl p-4">
                 <div className="text-center">
-                  <div className="font-bold text-2xl text-accent-foreground">5000+</div>
+                  <div className="font-bold text-2xl text-accent-foreground">100+</div>
                   <div className="text-xs text-accent-foreground/80">Products</div>
                 </div>
               </div>

@@ -4,12 +4,12 @@ const features = [
   {
     icon: Shield,
     title: "Quality Certified",
-    description: "ISO 13485 certified surgical instruments meeting international medical standards",
+    description: "Premium orthopaedic instruments meeting international standards",
     color: "bg-secondary/10 text-secondary",
   },
   {
     icon: Award,
-    title: "20+ Years Experience",
+    title: "15+ Years Experience",
     description: "Trusted by healthcare professionals worldwide for precision and reliability",
     color: "bg-primary/10 text-primary",
   },
@@ -49,10 +49,10 @@ export default function Features() {
             WHY CHOOSE US
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Your Trusted Partner in Medical Equipment
+            Your Trusted Partner in Orthopaedic Instruments
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Professional surgical instruments and medical supplies backed by quality certifications and expert support
+            Professional orthopaedic instruments backed by quality certifications and expert support
           </p>
         </div>
 
@@ -83,15 +83,15 @@ export default function Features() {
         <div className="mt-16 bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-border">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">5000+</div>
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">100+</div>
               <div className="text-muted-foreground">Products</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">1000+</div>
+              <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">50+</div>
               <div className="text-muted-foreground">Happy Clients</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">20+</div>
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">15+</div>
               <div className="text-muted-foreground">Years Exp.</div>
             </div>
             <div className="text-center">

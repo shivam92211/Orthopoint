@@ -11,15 +11,15 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#10455e",
+          DEFAULT: "#9d4ee9",
           foreground: "#FFFFFF",
-          light: "#36546e",
-          hover: "#004093",
+          light: "#b169ed",
+          hover: "#8933e5",
         },
         secondary: {
-          DEFAULT: "#23A455",
-          foreground: "#FFFFFF",
-          light: "#388E3C",
+          DEFAULT: "#8ce94e",
+          foreground: "#111827",
+          light: "#a0ed69",
         },
         accent: {
           DEFAULT: "#F8AD19",

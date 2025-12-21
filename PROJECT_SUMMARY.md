@@ -1,8 +1,8 @@
-# Surgical Instruments Store - Project Summary
+# Orthopaedic Instruments Store - Project Summary
 
 ## Project Overview
 
-A complete full-stack e-commerce website for selling surgical instruments with an admin panel for managing inventory.
+A complete full-stack e-commerce website for selling orthopaedic instruments with an admin panel for managing inventory.
 
 **Live Demo URLs:**
 - Public Site: `http://localhost:3000`
