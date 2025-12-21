@@ -45,9 +45,12 @@ export default function Hero() {
               <Button
                 size="lg"
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg group"
+                asChild
               >
-                Browse Catalog
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <Link href="/catalog">
+                  Browse Catalog
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
               <Button
                 size="lg"

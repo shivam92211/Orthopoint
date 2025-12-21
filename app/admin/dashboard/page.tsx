@@ -46,13 +46,14 @@ export default function AdminDashboard() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center h-[86px] border-b border-gray-300 -mt-6 px-4 sm:px-6 lg:px-8 -mx-4 sm:-mx-6 lg:-mx-8">
         <h1 className="text-3xl font-bold">Dashboard</h1>
         <Button variant="outline" onClick={() => signOut({ callbackUrl: "/admin/login" })}>
           Logout
         </Button>
       </div>
 
+      <div className="mt-8">
       {loading ? (
         <div className="text-center py-12">Loading...</div>
       ) : (
@@ -97,18 +98,19 @@ export default function AdminDashboard() {
               <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex gap-4">
-                <Link href="/admin/instruments/add">
-                  <Button>Add New Instrument</Button>
-                </Link>
+              <div className="flex flex-wrap gap-4">
                 <Link href="/admin/instruments">
-                  <Button variant="outline">Manage Instruments</Button>
+                  <Button>Manage Instruments</Button>
+                </Link>
+                <Link href="/admin/categories">
+                  <Button variant="outline">Manage Categories</Button>
                 </Link>
               </div>
             </CardContent>
           </Card>
         </>
       )}
+      </div>
     </div>
   );
 }

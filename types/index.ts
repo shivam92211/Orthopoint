@@ -42,6 +42,16 @@ export interface Admin {
   createdAt?: Date;
 }
 
+export interface Client {
+  _id?: string;
+  name: string;
+  url: string;
+  logoUrl: string;
+  regularClient: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 export interface FilterOptions {
   category?: string;
   minPrice?: number;

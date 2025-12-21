@@ -170,19 +170,21 @@ export default function InstrumentForm({
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">Category *</label>
-              <Input
+              <select
+                className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 value={formData.category}
                 onChange={(e) =>
                   setFormData({ ...formData, category: e.target.value })
                 }
-                list="categories"
                 required
-              />
-              <datalist id="categories">
+              >
+                <option value="">Select a category</option>
                 {categories.map((cat) => (
-                  <option key={cat} value={cat} />
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
                 ))}
-              </datalist>
+              </select>
             </div>
           </div>
 

@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <header className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
       {/* Top Bar */}
-      <div className="bg-primary text-primary-foreground py-2">
+      {/* <div className="bg-primary text-primary-foreground py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center gap-6">
@@ -27,7 +27,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,8 +57,8 @@ export default function Header() {
             <Link href="/#products" className="text-foreground hover:text-primary font-medium transition-colors">
               Products
             </Link>
-            <Link href="/#categories" className="text-foreground hover:text-primary font-medium transition-colors">
-              Categories
+            <Link href="/catalog" className="text-foreground hover:text-primary font-medium transition-colors">
+              Catalog
             </Link>
             <Link href="/about" className="text-foreground hover:text-primary font-medium transition-colors">
               About Us
@@ -75,12 +75,12 @@ export default function Header() {
                 Request Quote
               </a>
             </Button>
-            <Button size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground" asChild>
+            {/* <Button size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground" asChild>
               <a href="tel:+919987514573">
                 <Phone className="h-4 w-4 mr-2" />
                 Call Now
               </a>
-            </Button>
+            </Button> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -112,11 +112,11 @@ export default function Header() {
               Products
             </Link>
             <Link
-              href="/#categories"
+              href="/catalog"
               className="block py-2 text-foreground hover:text-primary font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Categories
+              Catalog
             </Link>
             <Link
               href="/about"
@@ -138,12 +138,12 @@ export default function Header() {
                   Request Quote
                 </a>
               </Button>
-              <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" asChild>
+              {/* <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" asChild>
                 <a href="tel:+919987514573">
                   <Phone className="h-4 w-4 mr-2" />
                   Call Now
                 </a>
-              </Button>
+              </Button> */}
             </div>
           </nav>
         </div>
