@@ -48,8 +48,10 @@ export default function Hero() {
                 asChild
               >
                 <Link href="/catalog">
-                  Browse Catalog
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <span className="inline-flex items-center justify-center gap-3">
+                    <span>Browse Catalog</span>
+                    <ArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </Link>
               </Button>
               <Button

@@ -54,9 +54,15 @@ export async function PUT(
 
     const body = await request.json();
 
+    // Ensure mostSold is explicitly set when provided (boolean)
+    const updateData: any = { ...body };
+    if (Object.prototype.hasOwnProperty.call(body, "mostSold")) {
+      updateData.mostSold = !!body.mostSold;
+    }
+
     const instrument = await InstrumentModel.findByIdAndUpdate(
       id,
-      body,
+      updateData,
       {
         new: true,
         runValidators: true,

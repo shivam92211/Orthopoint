@@ -116,34 +116,40 @@ export default function ManageClientsPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {clients.map((client) => (
             <Card key={client._id} className="overflow-hidden">
-              <CardContent className="p-6">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-32 h-32 mb-4 flex items-center justify-center bg-gray-100 rounded-lg overflow-hidden">
+              <CardContent className="p-4">
+                <div className="flex flex-row md:flex-col items-start md:items-center text-left md:text-center gap-4">
+                  <div className="w-20 h-20 flex items-center justify-center bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                     <img
                       src={client.logoUrl}
                       alt={client.name}
                       className="w-full h-full object-contain p-2"
                     />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{client.name}</h3>
-                  <a
-                    href={client.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-blue-600 hover:underline mb-2 truncate w-full"
-                  >
-                    {client.url}
-                  </a>
-                  {client.regularClient && (
-                    <span className="text-xs px-2 py-1 rounded bg-green-100 text-green-800 mb-4">
-                      Regular Client
-                    </span>
-                  )}
+
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold mb-1">{client.name}</h3>
+                    <a
+                      href={client.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-600 hover:underline block truncate"
+                    >
+                      {client.url}
+                    </a>
+                    {client.regularClient && (
+                      <span className="text-xs inline-block mt-2 px-2 py-1 rounded bg-green-100 text-green-800">
+                        Regular Client
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-4">
                   <Button
                     variant="destructive"
                     size="sm"
                     onClick={() => openDeleteDialog(client)}
-                    className="w-full mt-2"
+                    className="w-full"
                   >
                     <Trash2 className="h-4 w-4 mr-2" />
                     Delete

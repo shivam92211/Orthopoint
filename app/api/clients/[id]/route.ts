@@ -7,7 +7,7 @@ import ClientModel from "@/models/Client";
 // DELETE client (protected)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -21,7 +21,9 @@ export async function DELETE(
 
     await dbConnect();
 
-    const client = await ClientModel.findByIdAndDelete(params.id);
+    const { id } = await params;
+
+    const client = await ClientModel.findByIdAndDelete(id);
 
     if (!client) {
       return NextResponse.json(

@@ -54,9 +54,9 @@ export default function Header() {
             <Link href="/" className="text-foreground hover:text-primary font-medium transition-colors">
               Home
             </Link>
-            <Link href="/#products" className="text-foreground hover:text-primary font-medium transition-colors">
+            {/* <Link href="/#products" className="text-foreground hover:text-primary font-medium transition-colors">
               Products
-            </Link>
+            </Link> */}
             <Link href="/catalog" className="text-foreground hover:text-primary font-medium transition-colors">
               Catalog
             </Link>
@@ -104,13 +104,13 @@ export default function Header() {
             >
               Home
             </Link>
-            <Link
+            {/* <Link
               href="/#products"
               className="block py-2 text-foreground hover:text-primary font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               Products
-            </Link>
+            </Link> */}
             <Link
               href="/catalog"
               className="block py-2 text-foreground hover:text-primary font-medium"

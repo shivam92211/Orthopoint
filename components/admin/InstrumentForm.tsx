@@ -5,6 +5,15 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { CheckCircle, XCircle } from "lucide-react";
 import { Instrument } from "@/types";
 
 interface InstrumentFormProps {
@@ -20,6 +29,12 @@ export default function InstrumentForm({
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [categories, setCategories] = useState<string[]>([]);
+  const [messageDialog, setMessageDialog] = useState<{
+    open: boolean;
+    type: "success" | "error";
+    message: string;
+    nextRoute?: string | null;
+  }>({ open: false, type: "success", message: "", nextRoute: null });
 
   const [formData, setFormData] = useState<Partial<Instrument>>({
     name: instrument?.name || "",
@@ -39,7 +54,8 @@ export default function InstrumentForm({
     mainImage: instrument?.mainImage || "",
     available: instrument?.available ?? true,
     featured: instrument?.featured ?? false,
-    whatsappNumber: instrument?.whatsappNumber || process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER || "",
+    mostSold: instrument?.mostSold ?? false,
+    // whatsappNumber is intentionally omitted so server-side default (env WHATSAPP_PHONE_NUMBER) is used when creating
   });
 
   useEffect(() => {
@@ -106,7 +122,7 @@ export default function InstrumentForm({
       }));
     } catch (error) {
       console.error("Error uploading images:", error);
-      alert("Failed to upload one or more images. Please try again.");
+      setMessageDialog({ open: true, type: "error", message: "Failed to upload one or more images. Please try again.", nextRoute: null });
     } finally {
       setUploading(false);
       // Reset the file input
@@ -127,24 +143,22 @@ export default function InstrumentForm({
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          mostSold: !!formData.mostSold,
+        }),
       });
 
       const data = await res.json();
 
       if (data.success) {
-        alert(
-          isEdit
-            ? "Instrument updated successfully"
-            : "Instrument created successfully"
-        );
-        router.push("/admin/instruments");
+        setMessageDialog({ open: true, type: "success", message: isEdit ? "Instrument updated successfully" : "Instrument created successfully", nextRoute: "/admin/instruments" });
       } else {
-        alert(data.error || "Failed to save instrument");
+        setMessageDialog({ open: true, type: "error", message: data.error || "Failed to save instrument", nextRoute: null });
       }
     } catch (error) {
       console.error("Error saving instrument:", error);
-      alert("An error occurred");
+      setMessageDialog({ open: true, type: "error", message: "An error occurred", nextRoute: null });
     } finally {
       setLoading(false);
     }
@@ -373,16 +387,7 @@ export default function InstrumentForm({
             )}
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-2">WhatsApp Number</label>
-            <Input
-              value={formData.whatsappNumber}
-              onChange={(e) =>
-                setFormData({ ...formData, whatsappNumber: e.target.value })
-              }
-              placeholder="919XXXXXXXXX"
-            />
-          </div>
+          {/* WhatsApp number removed from form — server uses WHATSAPP_PHONE_NUMBER env by default */}
 
           <div className="flex gap-4">
             <label className="flex items-center gap-2">
@@ -405,6 +410,16 @@ export default function InstrumentForm({
               />
               <span className="text-sm">Featured</span>
             </label>
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={formData.mostSold}
+                onChange={(e) =>
+                  setFormData({ ...formData, mostSold: e.target.checked })
+                }
+              />
+              <span className="text-sm">Most Sold</span>
+            </label>
           </div>
 
           <div className="flex gap-4">
@@ -419,6 +434,32 @@ export default function InstrumentForm({
               Cancel
             </Button>
           </div>
+          <Dialog open={messageDialog.open} onOpenChange={(open) => setMessageDialog({ ...messageDialog, open })}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  {messageDialog.type === "success" ? (
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                  ) : (
+                    <XCircle className="h-5 w-5 text-red-600" />
+                  )}
+                  {messageDialog.type === "success" ? "Success" : "Error"}
+                </DialogTitle>
+                <DialogDescription>{messageDialog.message}</DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <Button
+                  onClick={() => {
+                    const next = messageDialog.nextRoute;
+                    setMessageDialog({ ...messageDialog, open: false });
+                    if (next) router.push(next);
+                  }}
+                >
+                  OK
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </CardContent>
       </Card>
     </form>

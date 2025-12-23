@@ -87,7 +87,7 @@ export default function Features() {
               <div className="text-muted-foreground">Products</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">50+</div>
+              <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">20+</div>
               <div className="text-muted-foreground">Happy Clients</div>
             </div>
             <div className="text-center">

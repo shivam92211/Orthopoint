@@ -4,11 +4,22 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { CheckCircle, XCircle } from "lucide-react";
 import { Instrument } from "@/types";
 
 export default function InstrumentsManagement() {
   const [instruments, setInstruments] = useState<Instrument[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; id: string | null; name?: string | null }>({ open: false, id: null, name: null });
+  const [messageDialog, setMessageDialog] = useState<{ open: boolean; type: "success" | "error"; message: string }>({ open: false, type: "success", message: "" });
 
   useEffect(() => {
     fetchInstruments();
@@ -29,10 +40,13 @@ export default function InstrumentsManagement() {
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this instrument?")) {
-      return;
-    }
+  const handleDeletePrompt = (id: string, name?: string) => {
+    setDeleteDialog({ open: true, id, name: name ?? null });
+  };
+
+  const handleDelete = async () => {
+    const id = deleteDialog.id;
+    if (!id) return setDeleteDialog({ open: false, id: null, name: null });
 
     try {
       const res = await fetch(`/api/instruments/${id}`, {
@@ -40,14 +54,16 @@ export default function InstrumentsManagement() {
       });
 
       if (res.ok) {
-        setInstruments(instruments.filter((i) => i._id !== id));
-        alert("Instrument deleted successfully");
+        setInstruments((prev) => prev.filter((i) => i._id !== id));
+        setMessageDialog({ open: true, type: "success", message: "Instrument deleted successfully" });
       } else {
-        alert("Failed to delete instrument");
+        setMessageDialog({ open: true, type: "error", message: "Failed to delete instrument" });
       }
     } catch (error) {
       console.error("Error deleting instrument:", error);
-      alert("An error occurred");
+      setMessageDialog({ open: true, type: "error", message: "An error occurred" });
+    } finally {
+      setDeleteDialog({ open: false, id: null, name: null });
     }
   };
 
@@ -105,6 +121,11 @@ export default function InstrumentsManagement() {
                           Featured
                         </span>
                       )}
+                        {instrument.mostSold && (
+                          <span className="text-xs px-2 py-1 rounded bg-amber-100 text-amber-800">
+                            Most Sold
+                          </span>
+                        )}
                     </div>
                     <div className="flex gap-2 mt-3 md:hidden">
                       <Link href={`/admin/instruments/edit/${instrument._id}`}>
@@ -115,7 +136,7 @@ export default function InstrumentsManagement() {
                       <Button
                         variant="destructive"
                         size="sm"
-                        onClick={() => handleDelete(instrument._id!)}
+                        onClick={() => handleDeletePrompt(instrument._id!, instrument.name)}
                       >
                         Delete
                       </Button>
@@ -130,7 +151,7 @@ export default function InstrumentsManagement() {
                     <Button
                       variant="destructive"
                       size="sm"
-                      onClick={() => handleDelete(instrument._id!)}
+                      onClick={() => handleDeletePrompt(instrument._id!, instrument.name)}
                     >
                       Delete
                     </Button>
@@ -142,6 +163,31 @@ export default function InstrumentsManagement() {
         </div>
       )}
       </div>
+      
+      <Dialog open={deleteDialog.open} onOpenChange={(open) => setDeleteDialog({ ...deleteDialog, open })}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Instrument</DialogTitle>
+            <DialogDescription>Are you sure you want to delete "{deleteDialog.name ?? "this instrument"}"? This action cannot be undone.</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDeleteDialog({ open: false, id: null, name: null })}>Cancel</Button>
+            <Button variant="destructive" onClick={handleDelete}>Delete</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={messageDialog.open} onOpenChange={(open) => setMessageDialog({ ...messageDialog, open })}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">{messageDialog.type === "success" ? <CheckCircle className="h-5 w-5 text-green-600" /> : <XCircle className="h-5 w-5 text-red-600" />}{messageDialog.type === "success" ? "Success" : "Error"}</DialogTitle>
+            <DialogDescription>{messageDialog.message}</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={() => setMessageDialog({ ...messageDialog, open: false })}>OK</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

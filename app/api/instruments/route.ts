@@ -15,6 +15,7 @@ export async function GET(request: NextRequest) {
     const maxPrice = searchParams.get("maxPrice");
     const available = searchParams.get("available");
     const featured = searchParams.get("featured");
+    const mostSold = searchParams.get("mostSold");
     const search = searchParams.get("search");
 
     let query: any = {};
@@ -35,6 +36,10 @@ export async function GET(request: NextRequest) {
 
     if (featured === "true") {
       query.featured = true;
+    }
+
+    if (mostSold === "true") {
+      query.mostSold = true;
     }
 
     if (search) {
@@ -73,7 +78,13 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const instrument = await InstrumentModel.create(body);
+    // Ensure mostSold is handled correctly if present
+    const instrumentData = { ...body };
+    if (Object.prototype.hasOwnProperty.call(body, "mostSold")) {
+      instrumentData.mostSold = !!body.mostSold;
+    }
+
+    const instrument = await InstrumentModel.create(instrumentData);
 
     return NextResponse.json(
       {

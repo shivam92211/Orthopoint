@@ -19,6 +19,7 @@ export interface Instrument {
   mainImage: string;
   available: boolean;
   featured: boolean;
+  mostSold: boolean;
   whatsappNumber: string;
   createdAt?: Date;
   updatedAt?: Date;

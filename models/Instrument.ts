@@ -51,6 +51,10 @@ const InstrumentSchema = new Schema<Instrument>(
       type: Boolean,
       default: false,
     },
+    mostSold: {
+      type: Boolean,
+      default: false,
+    },
     whatsappNumber: {
       type: String,
       default: process.env.WHATSAPP_PHONE_NUMBER || "",

@@ -1,35 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Grid3x3, List, Search } from "lucide-react";
+import { Instrument, Category } from "@/types";
 import { Button } from "@/components/ui/button";
 import InstrumentCard from "@/components/public/InstrumentCard";
 
-interface Category {
-  _id: string;
-  name: string;
-  slug: string;
-  description: string;
-  icon: string;
-}
 
-interface Instrument {
-  _id: string;
-  name: string;
-  description: string;
-  category: string;
-  price: number;
-  currency: string;
-  images: string[];
-  specifications: Record<string, string>;
-  available: boolean;
-  featured: boolean;
-}
 
-export default function CatalogPage() {
+function CatalogContent() {
   const searchParams = useSearchParams();
   const [categories, setCategories] = useState<Category[]>([]);
   const [instruments, setInstruments] = useState<Instrument[]>([]);
@@ -234,5 +216,13 @@ export default function CatalogPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CatalogPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <CatalogContent />
+    </Suspense>
   );
 }

@@ -7,7 +7,7 @@ import CategoryModel from "@/models/Category";
 // DELETE category (protected)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -21,7 +21,9 @@ export async function DELETE(
 
     await dbConnect();
 
-    const category = await CategoryModel.findByIdAndDelete(params.id);
+    const { id } = await params;
+
+    const category = await CategoryModel.findByIdAndDelete(id);
 
     if (!category) {
       return NextResponse.json(

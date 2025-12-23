@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { LayoutDashboard, Package, FolderOpen, LogOut, Menu, X, ChevronLeft, ChevronRight, Users } from "lucide-react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 
 export default function AdminLayout({
@@ -15,12 +15,27 @@ export default function AdminLayout({
 }) {
   const pathname = usePathname();
   const isLoginPage = pathname === "/admin/login";
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   if (isLoginPage) {
     return <SessionProvider>{children}</SessionProvider>;
   }
+
+  return (
+    <SessionProvider>
+      <AdminLayoutInner>{children}</AdminLayoutInner>
+    </SessionProvider>
+  );
+}
+
+function AdminLayoutInner({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const { data: session } = useSession();
 
   const navigation = [
     {
@@ -50,7 +65,6 @@ export default function AdminLayout({
   ];
 
   return (
-    <SessionProvider>
       <div className="flex h-screen bg-gray-100">
         {/* Mobile menu button */}
         <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between bg-primary px-4 py-3 md:hidden">
@@ -62,7 +76,7 @@ export default function AdminLayout({
               height={32}
               className="rounded"
             />
-            <h1 className="text-xl font-bold text-white">Admin Panel</h1>
+            <h1 className="text-xl font-bold text-white">{session?.user?.name ?? "Admin Panel"}</h1>
           </div>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -102,7 +116,7 @@ export default function AdminLayout({
                 className="rounded"
               />
               {!sidebarCollapsed && (
-                <h1 className="text-2xl font-bold text-white">Admin Panel</h1>
+                <h1 className="text-2xl font-bold text-white">{session?.user?.name ?? "Admin Panel"}</h1>
               )}
             </div>
 
@@ -164,6 +178,5 @@ export default function AdminLayout({
           </main>
         </div>
       </div>
-    </SessionProvider>
   );
 }
