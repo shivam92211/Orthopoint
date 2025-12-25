@@ -46,7 +46,7 @@ export default function MostSoldSlider() {
     <section className="py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h3 className="text-2xl font-semibold mb-4">Most Sold</h3>
-        <div className="relative w-full h-56 md:h-64 overflow-hidden rounded-lg shadow-sm">
+        <div className="relative w-full overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={current._id}
@@ -54,23 +54,18 @@ export default function MostSoldSlider() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
               transition={{ duration: 0.8 }}
-              className="absolute inset-0 flex flex-col md:flex-row items-center"
+              className="w-full"
             >
-              <Link href={`/instruments/${current._id}`} className="flex w-full h-full flex-col md:flex-row">
-                <div className="w-full md:w-1/3 flex items-center justify-center bg-gray-50 p-4">
+              <Link href={`/instruments/${current._id}`} className="flex flex-col items-center">
+                <div className="w-full aspect-square max-w-md mx-auto bg-gray-50 rounded-lg overflow-hidden p-8 flex items-center justify-center">
                   {current.mainImage ? (
-                    <Image src={current.mainImage} alt={current.name} width={240} height={240} className="object-contain" />
+                    <Image src={current.mainImage} alt={current.name} width={400} height={400} className="w-full h-full object-contain" />
                   ) : (
-                    <div className="w-40 h-40 bg-gray-200" />
+                    <div className="w-full h-full bg-gray-200" />
                   )}
                 </div>
-                <div className="w-full md:flex-1 p-6 flex flex-col justify-center">
-                  <h4 className="text-xl md:text-2xl font-bold mb-2">{current.name}</h4>
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-3">{current.description}</p>
-                  <div className="flex items-center gap-4">
-                    <span className="text-lg font-semibold">{current.currency === "INR" ? "₹" : "$"}{current.price.toLocaleString()}</span>
-                    <span className="text-xs px-2 py-1 rounded bg-yellow-100 text-yellow-800">Most Sold</span>
-                  </div>
+                <div className="mt-4 text-center">
+                  <h4 className="text-xl md:text-2xl font-bold">{current.name}</h4>
                 </div>
               </Link>
             </motion.div>

@@ -1,0 +1,43 @@
+# OrthoPoint Website Documentation
+
+## Overview
+OrthoPoint is a premier online store for high-quality orthopaedic surgical instruments. We serve surgeons, hospitals, and medical facilities with a wide range of certified products including bone screws, plates, joint replacement tools, and trauma instruments.
+
+## Website Structure
+
+### Public Pages
+- / : Homepage. Features a hero section, most sold items slider, feature highlights, and regular clients list.
+- /catalog : Full product catalog. Allows users to browse all instruments with filtering by category, price, and availability.
+- /about : About Us page. Details our 15+ years of experience, mission, values, and commitment to quality.
+- /contact : Contact page. Provides location, phone numbers, email, and a contact form.
+- /instruments/[id] : Product detail page. Shows full specifications, high-quality images, and a "Request Quote" button via WhatsApp.
+
+### Admin Panel (Protected)
+- /admin/login : Secure entry point for administrators.
+- /admin/dashboard : Overview of site statistics.
+- /admin/instruments : Inventory management (Add, Edit, Delete products).
+- /admin/categories : Category management.
+
+## Key Features
+- **Real-time Search & Filtering**: Users can find specific instruments instantly.
+- **WhatsApp Integration**: Direct "Request Quote" functionality connects buyers with sales staff via WhatsApp.
+- **Responsive Design**: Optimized for mobile, tablet, and desktop viewing.
+- **Secure Admin**: Built with NextAuth.js for secure inventory management.
+
+## Product Categories
+- Bone Screws & Plates
+- Joint Replacement
+- Trauma Instruments
+- Spinal Implants
+- Arthroscopy Tools
+
+## Technical Stack
+- Frontend: Next.js 15, React 19, Tailwind CSS
+- Backend: Next.js API Routes
+- Database: MongoDB
+- Image Storage: Cloudinary
+
+## Contact Information
+- Phone: +91 9324275387 / +91 9987514573
+- Email: orthopoint.in@gmail.com
+- Address: 123 Medical Plaza, Suite 456, Healthcare District, NY 10001
