@@ -120,14 +120,16 @@ export default function HomePage() {
       {/* Most Sold Slider */}
       <MostSoldSlider />
 
+      {/* Regular Clients */}
+      <RegularClients />
+
       {/* Features Section */}
       <Features />
 
       {/* Category Showcase */}
       {/* <CategoryShowcase /> */}
 
-      {/* Regular Clients */}
-      <RegularClients />
+      
 
       
       

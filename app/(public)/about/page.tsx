@@ -35,7 +35,7 @@ export default function AboutPage() {
                 Excellence in Every Instrument
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                At OrthoPoint, we understand that precision is paramount in orthopaedic surgery. For over 15 years, we have been dedicated to supplying surgeons and medical facilities with premium-grade instruments that meet the highest standards of quality and reliability.
+                At OrthoPoint, we understand that precision is paramount in orthopaedic surgery. For over 15 years, we have been dedicated to supplying Dealers, Distributors, Stockist and medical facilities with premium-grade instruments that meet the highest standards of quality and reliability.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 Our mission is simple: to empower healthcare professionals with the tools they need to restore mobility and improve lives. We bridge the gap between innovative manufacturing and the operating room, ensuring that every instrument we deliver contributes to a successful surgical outcome.
@@ -113,12 +113,12 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold mb-3">Wide Distribution</h3>
               <p className="text-muted-foreground">
-                Serving hospitals, clinics, and medical professionals across the region with efficient logistics.
+                Serving Brands, dealers, and medical professionals across the region with efficient logistics.
               </p>
             </div>
 
              {/* Feature 6 */}
-             <div className="bg-white p-8 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow">
+             {/* <div className="bg-white p-8 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
                 <CheckCircle2 className="h-6 w-6 text-primary" />
               </div>
@@ -126,7 +126,7 @@ export default function AboutPage() {
               <p className="text-muted-foreground">
                 We deal only in certified instruments that meet international safety and performance benchmarks.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

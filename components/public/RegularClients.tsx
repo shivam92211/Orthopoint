@@ -63,14 +63,14 @@ export default function RegularClients() {
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center group"
             >
-              <div className="relative w-32 h-32 mb-4 bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex items-center justify-center transition-all duration-300 group-hover:shadow-md group-hover:scale-105 group-hover:border-primary/20">
-                 <img 
-                   src={client.logoUrl} 
+              <div className="relative w-48 h-48 mb-4 bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-center justify-center transition-all duration-300 group-hover:shadow-lg group-hover:scale-105 group-hover:border-primary/30">
+                 <img
+                   src={client.logoUrl}
                    alt={client.name}
-                   className="object-contain max-w-full max-h-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" 
+                   className="object-contain max-w-full max-h-full transition-all duration-300 group-hover:scale-110"
                  />
               </div>
-              <span className="text-sm font-medium text-gray-500 group-hover:text-primary transition-colors">
+              <span className="text-sm font-medium text-gray-700 group-hover:text-primary transition-colors">
                 {client.name}
               </span>
             </Link>

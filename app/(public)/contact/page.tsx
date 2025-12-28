@@ -27,20 +27,34 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
       setTimeout(() => setSubmitStatus("idle"), 5000);
-    }, 1500);
+    }
   };
 
   return (
@@ -95,8 +109,8 @@ export default function ContactPage() {
               </div>
               <h3 className="text-lg font-bold mb-2">Visit Us</h3>
               <p className="text-muted-foreground">
-                123 Medical Plaza, Suite 456<br />
-                Healthcare District, NY 10001
+                4B/ Ghandhi Industrial Estate <br />
+                Goddev Naka, Bhayander(East) 401105 .
               </p>
             </div>
           </div>
@@ -227,7 +241,7 @@ export default function ContactPage() {
               <h2 className="text-3xl font-bold mb-6">Our Location</h2>
               <div className="rounded-xl overflow-hidden shadow-lg border border-border h-[500px]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1841374444944!2d-73.98823492346652!3d40.75889797138558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1704117600000!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.559885706923!2d72.8559226!3d19.3048127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b18d5d54ce85%3A0xd2f640d9609247f1!2sORTHOPOINT!5e0!3m2!1sen!2sin!4v1735380000000!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

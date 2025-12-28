@@ -41,12 +41,15 @@ export default function MostSoldSlider() {
   if (!items || items.length === 0) return null;
 
   const current = items[index];
+  const displayItems = items.slice(0, 5); // Take first 5 items for desktop
 
   return (
     <section className="py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h3 className="text-2xl font-semibold mb-4">Most Sold</h3>
-        <div className="relative w-full overflow-hidden">
+
+        {/* Mobile View - Slider (single item) */}
+        <div className="relative w-full overflow-hidden md:hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={current._id}
@@ -65,11 +68,41 @@ export default function MostSoldSlider() {
                   )}
                 </div>
                 <div className="mt-4 text-center">
-                  <h4 className="text-xl md:text-2xl font-bold">{current.name}</h4>
+                  <h4 className="text-xl font-bold">{current.name}</h4>
                 </div>
               </Link>
             </motion.div>
           </AnimatePresence>
+        </div>
+
+        {/* Desktop View - Grid (5 items) */}
+        <div className="hidden md:grid md:grid-cols-5 gap-4">
+          {displayItems.map((item) => (
+            <Link
+              key={item._id}
+              href={`/instruments/${item._id}`}
+              className="flex flex-col items-center group"
+            >
+              <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden p-4 flex items-center justify-center group-hover:shadow-lg transition-shadow">
+                {item.mainImage ? (
+                  <Image
+                    src={item.mainImage}
+                    alt={item.name}
+                    width={300}
+                    height={300}
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-200" />
+                )}
+              </div>
+              <div className="mt-3 text-center">
+                <h4 className="text-sm font-semibold line-clamp-2 group-hover:text-primary transition-colors">
+                  {item.name}
+                </h4>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </section>

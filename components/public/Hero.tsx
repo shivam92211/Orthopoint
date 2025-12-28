@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Shield, Award, Truck } from "lucide-react";
+import { ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
@@ -33,15 +33,15 @@ export default function Hero() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Premium Orthopaedic Instruments for Healthcare Professionals
+              B2B High Quality Orthopaedic Instrument Manufacturing Company.
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
-              Trusted by hospitals, clinics, and surgeons worldwide. Quality instruments delivered with precision.
+              Trusted by Dealears, Wholesalers, Stockists, Distributors and Branded Manufacturer all over india. 
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg group"
@@ -64,39 +64,6 @@ export default function Hero() {
                   Request Quote
                 </a>
               </Button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/20">
-              <div className="flex items-center gap-3">
-                <div className="bg-secondary/20 p-2 rounded-lg">
-                  <Shield className="h-6 w-6 text-secondary" />
-                </div>
-                <div>
-                  <div className="font-bold text-lg">Premium</div>
-                  <div className="text-sm text-white/80">Quality</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="bg-secondary/20 p-2 rounded-lg">
-                  <Award className="h-6 w-6 text-secondary" />
-                </div>
-                <div>
-                  <div className="font-bold text-lg">15+ Years</div>
-                  <div className="text-sm text-white/80">Experience</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="bg-secondary/20 p-2 rounded-lg">
-                  <Truck className="h-6 w-6 text-secondary" />
-                </div>
-                <div>
-                  <div className="font-bold text-lg">Fast</div>
-                  <div className="text-sm text-white/80">Delivery</div>
-                </div>
-              </div>
             </div>
           </div>
 

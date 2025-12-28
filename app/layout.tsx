@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OrthoPoint - Premium Orthopaedic Instruments",
-  description: "Professional orthopaedic instruments for hospitals, clinics, and healthcare professionals. Quality certified products with expert support.",
+  title: "OrthoPoint - High quality Orthopaedic instruments at lowest price",
+  description: "Orthopaedic instruments for medical professionals, orthopaedic dealers , distributors and stockist at lowest price for reselling. .",
   icons: {
     icon: '/logo.jpg',
     apple: '/logo.jpg',

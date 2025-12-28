@@ -3,14 +3,14 @@ import { Shield, Award, Headphones, Truck, CheckCircle, FileCheck } from "lucide
 const features = [
   {
     icon: Shield,
-    title: "Quality Certified",
-    description: "Premium orthopaedic instruments meeting international standards",
+    title: " High Quality Material use ",
+    description: " 174ph, 304 S.S, 303 S.S, 5th grade Titanium, Aluminium  ",
     color: "bg-secondary/10 text-secondary",
   },
   {
     icon: Award,
     title: "15+ Years Experience",
-    description: "Trusted by healthcare professionals worldwide for precision and reliability",
+    description: "Trusted by Dealers, Distribuitors, Wholesalers, Brand in Orthopaedic all over India",
     color: "bg-primary/10 text-primary",
   },
   {
@@ -22,19 +22,19 @@ const features = [
   {
     icon: Truck,
     title: "Fast Delivery",
-    description: "Quick and secure shipping to hospitals and clinics across the country",
+    description: "Quick and secure shipping across the country",
     color: "bg-accent/10 text-accent",
   },
   {
     icon: Headphones,
-    title: "Expert Support",
+    title: "Customer Support",
     description: "Dedicated customer service and technical assistance for all products",
     color: "bg-primary/10 text-primary",
   },
   {
     icon: FileCheck,
-    title: "Complete Documentation",
-    description: "All necessary certifications and documentation provided with every order",
+    title: "GST Invoicing",
+    description: "Billing on same delivery date",
     color: "bg-secondary/10 text-secondary",
   },
 ];

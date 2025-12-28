@@ -1,8 +1,30 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Category } from "@/types";
 
-export default function Footer() {
+async function getCategories(): Promise<Category[]> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/categories`, {
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const data = await response.json();
+    return data.data || [];
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
+}
+
+export default async function Footer() {
+  const categories = await getCategories();
+  const displayCategories = categories.slice(0, 5); // Show first 5 categories
   return (
     <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
@@ -95,31 +117,23 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-4">Categories</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Bone Screws & Plates
-                </Link>
-              </li>
-              <li>
-                <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Joint Replacement
-                </Link>
-              </li>
-              <li>
-                <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Trauma Instruments
-                </Link>
-              </li>
-              <li>
-                <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Spinal Implants
-                </Link>
-              </li>
-              <li>
-                <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Arthroscopy Tools
-                </Link>
-              </li>
+              {displayCategories.length > 0 ? (
+                displayCategories.map((category) => (
+                  <li key={category._id}>
+                    <Link
+                      href={`/?category=${encodeURIComponent(category.name)}`}
+                      className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
+                    >
+                      {category.icon && <span className="mr-1">{category.icon}</span>}
+                      {category.name}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <li className="text-sm text-primary-foreground/80">
+                  No categories available
+                </li>
+              )}
             </ul>
           </div>
 
@@ -130,8 +144,8 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
                 <span className="text-sm text-primary-foreground/80">
-                  123 Medical Plaza, Suite 456<br />
-                  Healthcare District, NY 10001
+                  4B/ Ghandhi Industrial Estate<br />
+                  Goddev Naka, Bhayander(East) 401105.
                 </span>
               </li>
               <li>
@@ -163,6 +177,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/80">
             <p>© 2024 OrthoPoint. All rights reserved.</p>
+            <p>Created by <a href="https://portfolio-shivam92211s-projects.vercel.app/" className="hover:text-secondary transition-colors">Lohar Tech</a> </p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-secondary transition-colors">
                 Privacy Policy

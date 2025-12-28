@@ -3,8 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, X, Phone, Mail, ShoppingCart } from "lucide-react";
+import { Menu, X, Phone, Mail, ShoppingCart, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FaWhatsapp, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa6";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,22 +13,77 @@ export default function Header() {
   return (
     <header className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
       {/* Top Bar */}
-      {/* <div className="bg-primary text-primary-foreground py-2">
+      <div className="bg-primary text-primary-foreground py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center gap-6">
-              <a href="tel:+919324275387" className="flex items-center gap-2 hover:text-secondary transition-colors">
-                <Phone className="h-4 w-4" />
-                <span className="hidden sm:inline">+91 9324275387 / +91 9987514573</span>
+            {/* Contact Info */}
+            <div className="flex items-center gap-2 sm:gap-3 md:gap-6">
+              <a href="tel:+918108419746" className="flex items-center gap-1 sm:gap-2 hover:text-secondary transition-colors">
+                <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden sm:inline text-xs sm:text-sm">+91 81084 19746</span>
+                <span className="sm:hidden text-xs">Call</span>
               </a>
-              <a href="mailto:orthopoint.in@gmail.com" className="flex items-center gap-2 hover:text-secondary transition-colors">
-                <Mail className="h-4 w-4" />
-                <span className="hidden sm:inline">orthopoint.in@gmail.com</span>
+              <a href="mailto:orthopoint.in@gmail.com" className="flex items-center gap-1 sm:gap-2 hover:text-secondary transition-colors">
+                <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden sm:inline text-xs sm:text-sm">orthopoint.in@gmail.com</span>
+                <span className="sm:hidden text-xs">Email</span>
               </a>
+            </div>
+
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-xs hidden md:inline">Follow us:</span>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <a
+                  href="https://wa.me/918108419746"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-secondary transition-colors hover:scale-110 transform"
+                  aria-label="WhatsApp"
+                >
+                  <FaWhatsapp className="h-3 w-3 sm:h-4 sm:w-4" />
+                </a>
+                <a
+                  href="https://www.instagram.com/orthopoint.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-secondary transition-colors hover:scale-110 transform"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram className="h-3 w-3 sm:h-4 sm:w-4" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@orthopoint-in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-secondary transition-colors hover:scale-110 transform"
+                  aria-label="YouTube"
+                >
+                  <FaYoutube className="h-3 w-3 sm:h-4 sm:w-4" />
+                </a>
+                <a
+                  href="https://www.indiamart.com/ortho-point"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-secondary transition-colors hover:scale-110 transform"
+                  aria-label="IndiaMART"
+                >
+                  <Store className="h-3 w-3 sm:h-4 sm:w-4" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/orthopoint"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-secondary transition-colors hover:scale-110 transform"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin className="h-3 w-3 sm:h-4 sm:w-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* Main Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
