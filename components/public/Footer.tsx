@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Store } from "lucide-react";
+import { FaWhatsapp, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa6";
 import { Category } from "@/types";
 
 async function getCategories(): Promise<Category[]> {
@@ -51,33 +52,50 @@ export default async function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://wa.me/918108419746"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white/10 p-2 rounded-lg hover:bg-secondary transition-colors"
-                aria-label="Facebook"
+                aria-label="WhatsApp"
               >
-                <Facebook className="h-5 w-5" />
+                <FaWhatsapp className="h-5 w-5" />
               </a>
               <a
-                href="#"
-                className="bg-white/10 p-2 rounded-lg hover:bg-secondary transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="bg-white/10 p-2 rounded-lg hover:bg-secondary transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
+                href="https://www.instagram.com/orthopoint.in"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white/10 p-2 rounded-lg hover:bg-secondary transition-colors"
                 aria-label="Instagram"
               >
-                <Instagram className="h-5 w-5" />
+                <FaInstagram className="h-5 w-5" />
               </a>
+              <a
+                href="https://www.youtube.com/@orthopoint-in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 p-2 rounded-lg hover:bg-secondary transition-colors"
+                aria-label="YouTube"
+              >
+                <FaYoutube className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.indiamart.com/ortho-point"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 p-2 rounded-lg hover:bg-secondary transition-colors"
+                aria-label="IndiaMART"
+              >
+                <Store className="h-5 w-5" />
+              </a>
+              {/* <a
+                href="https://www.linkedin.com/company/orthopoint"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 p-2 rounded-lg hover:bg-secondary transition-colors"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin className="h-5 w-5" />
+              </a> */}
             </div>
           </div>
 
@@ -90,14 +108,14 @@ export default async function Footer() {
                   Home
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/#products" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
                   Products
                 </Link>
-              </li>
+              </li> */}
               <li>
-                <Link href="/#categories" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Categories
+                <Link href="/catalog" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
+                  Catalog
                 </Link>
               </li>
               <li>
@@ -177,7 +195,7 @@ export default async function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/80">
             <p>© 2024 OrthoPoint. All rights reserved.</p>
-            <p>Created by <a href="https://portfolio-shivam92211s-projects.vercel.app/" className="hover:text-secondary transition-colors">Lohar Tech</a> </p>
+            <p>Created by <a href="https://portfolio-shivam92211s-projects.vercel.app/" className="hover:text-secondary transition-colors">Shivam Vishwakarma</a> </p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-secondary transition-colors">
                 Privacy Policy

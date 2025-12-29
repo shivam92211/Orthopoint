@@ -13,8 +13,14 @@ export interface Instrument {
     weight?: string;
     dimensions?: string;
   };
-  price: number;
+  price?: number;
   currency: string;
+  rates?: Array<{
+    minQuantity: number;
+    maxQuantity: number;
+    price: number;
+  }>;
+  greaterThanPrice?: number;
   images: string[];
   mainImage: string;
   available: boolean;

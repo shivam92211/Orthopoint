@@ -8,6 +8,7 @@ import { Instrument } from "@/types";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import WhatsAppButton from "@/components/public/WhatsAppButton";
 
 export default function InstrumentDetailsPage() {
@@ -19,6 +20,8 @@ export default function InstrumentDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     if (params.id) {
@@ -69,6 +72,40 @@ export default function InstrumentDetailsPage() {
       const newIndex = selectedImageIndex - 1;
       setSelectedImageIndex(newIndex);
       setSelectedImage(instrument.images[newIndex]);
+    }
+  };
+
+  const calculateTotalPrice = (qty: number) => {
+    if (!instrument?.rates || instrument.rates.length === 0) {
+      return (instrument?.price || 0) * qty;
+    }
+
+    // Find the appropriate rate based on quantity
+    let pricePerUnit = 0;
+    const rate = instrument.rates.find(
+      (r) => qty >= r.minQuantity && qty <= r.maxQuantity
+    );
+
+    if (rate) {
+      pricePerUnit = rate.price;
+    } else if (qty > instrument.rates[instrument.rates.length - 1].maxQuantity) {
+      // Use greaterThanPrice if quantity exceeds all rates
+      pricePerUnit = instrument.greaterThanPrice || instrument.rates[instrument.rates.length - 1].price;
+    } else {
+      // Default to first rate price
+      pricePerUnit = instrument.rates[0].price;
+    }
+
+    return pricePerUnit * qty;
+  };
+
+  const handleQuantityChange = (value: string) => {
+    const qty = parseInt(value) || 0;
+    setQuantity(qty);
+    if (qty > 0) {
+      setTotalPrice(calculateTotalPrice(qty));
+    } else {
+      setTotalPrice(0);
     }
   };
 
@@ -217,7 +254,12 @@ export default function InstrumentDetailsPage() {
 
             <div className="flex items-baseline gap-2 mb-6">
               <span className="text-4xl font-bold text-primary">
-                {formatPrice(instrument.price, instrument.currency)}
+                {formatPrice(
+                  instrument.rates && instrument.rates.length > 0
+                    ? instrument.rates[0].price
+                    : instrument.price || 0,
+                  instrument.currency
+                )}
               </span>
               <span
                 className={`text-sm px-2 py-1 rounded ${
@@ -229,6 +271,78 @@ export default function InstrumentDetailsPage() {
                 {instrument.available ? "Available" : "Sold Out"}
               </span>
             </div>
+
+            {/* Quantity-Based Pricing Table */}
+            {instrument.rates && instrument.rates.length > 0 && (
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg">Quantity-Based Pricing</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th className="py-2 px-3 text-left font-semibold text-sm">Quantity Range</th>
+                          <th className="py-2 px-3 text-right font-semibold text-sm">Price per Unit</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y">
+                        {instrument.rates.map((rate, index) => (
+                          <tr key={index}>
+                            <td className="py-2 px-3">
+                              {rate.minQuantity} - {rate.maxQuantity} units
+                            </td>
+                            <td className="py-2 px-3 text-right font-medium">
+                              {formatPrice(rate.price, instrument.currency)}
+                            </td>
+                          </tr>
+                        ))}
+                        {instrument.greaterThanPrice !== undefined && instrument.greaterThanPrice > 0 && (
+                          <tr className="bg-gray-50">
+                            <td className="py-2 px-3">
+                              {instrument.rates[instrument.rates.length - 1].maxQuantity + 1}+ units
+                            </td>
+                            <td className="py-2 px-3 text-right font-medium">
+                              {formatPrice(instrument.greaterThanPrice, instrument.currency)}
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Price Calculator */}
+                  <div className="mt-6 pt-6 border-t">
+                    <h3 className="text-md font-semibold mb-4">Price Calculator</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Enter Quantity</label>
+                        <Input
+                          type="number"
+                          min="1"
+                          value={quantity}
+                          onChange={(e) => handleQuantityChange(e.target.value)}
+                          placeholder="Enter quantity"
+                          className="w-full"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Total Price</label>
+                        <div className="h-10 px-3 py-2 bg-primary/10 text-primary rounded-md font-bold text-lg flex items-center">
+                          {quantity > 0 ? formatPrice(totalPrice, instrument.currency) : formatPrice(0, instrument.currency)}
+                        </div>
+                      </div>
+                    </div>
+                    {quantity > 0 && (
+                      <p className="text-sm text-muted-foreground mt-3">
+                        Price per unit: {formatPrice(totalPrice / quantity, instrument.currency)}
+                      </p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             <div className="mb-6">
               <h2 className="text-lg font-semibold mb-2">Description</h2>
@@ -305,7 +419,11 @@ export default function InstrumentDetailsPage() {
             {instrument.available && (
               <WhatsAppButton
                 instrumentName={instrument.name}
-                price={instrument.price}
+                price={
+                  instrument.rates && instrument.rates.length > 0
+                    ? instrument.rates[0].price
+                    : instrument.price || 0
+                }
                 currency={instrument.currency}
                 phoneNumber={instrument.whatsappNumber}
               />

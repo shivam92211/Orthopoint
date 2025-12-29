@@ -70,7 +70,7 @@ export default function Header() {
                 >
                   <Store className="h-3 w-3 sm:h-4 sm:w-4" />
                 </a>
-                <a
+                {/* <a
                   href="https://www.linkedin.com/company/orthopoint"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -78,7 +78,7 @@ export default function Header() {
                   aria-label="LinkedIn"
                 >
                   <FaLinkedin className="h-3 w-3 sm:h-4 sm:w-4" />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

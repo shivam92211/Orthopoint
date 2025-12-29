@@ -90,10 +90,10 @@ export default function HomePage() {
 
     // Price filter
     if (minPrice) {
-      filtered = filtered.filter((i) => i.price >= Number(minPrice));
+      filtered = filtered.filter((i) => (i.price ?? 0) >= Number(minPrice));
     }
     if (maxPrice) {
-      filtered = filtered.filter((i) => i.price <= Number(maxPrice));
+      filtered = filtered.filter((i) => (i.price ?? 0) <= Number(maxPrice));
     }
 
     // Available filter

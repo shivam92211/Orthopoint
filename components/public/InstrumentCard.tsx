@@ -61,13 +61,13 @@ export default function InstrumentCard({ instrument }: InstrumentCardProps) {
           <div>
             <div className="flex items-baseline gap-1 mb-2">
               <p className="text-lg font-bold text-primary">
-                {formatPrice(instrument.price, instrument.currency)}
+                {formatPrice(
+                  instrument.rates && instrument.rates.length > 0
+                    ? instrument.rates[0].price
+                    : instrument.price || 0,
+                  instrument.currency
+                )}
               </p>
-              {instrument.featured && (
-                <span className="text-xs line-through text-muted-foreground">
-                  {formatPrice(instrument.price * 1.2, instrument.currency)}
-                </span>
-              )}
             </div>
 
             <div className="flex gap-2">
@@ -151,13 +151,13 @@ export default function InstrumentCard({ instrument }: InstrumentCardProps) {
 
           <div className="flex items-baseline gap-2">
             <p className="text-2xl font-bold text-primary">
-              {formatPrice(instrument.price, instrument.currency)}
+              {formatPrice(
+                instrument.rates && instrument.rates.length > 0
+                  ? instrument.rates[0].price
+                  : instrument.price || 0,
+                instrument.currency
+              )}
             </p>
-            {instrument.featured && (
-              <span className="text-xs line-through text-muted-foreground">
-                {formatPrice(instrument.price * 1.2, instrument.currency)}
-              </span>
-            )}
           </div>
         </CardContent>
 

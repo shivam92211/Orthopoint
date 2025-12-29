@@ -50,6 +50,8 @@ export default function InstrumentForm({
     },
     price: instrument?.price || 0,
     currency: instrument?.currency || "INR",
+    rates: instrument?.rates || (isEdit ? [] : [{ minQuantity: 1, maxQuantity: 10, price: 0 }]),
+    greaterThanPrice: instrument?.greaterThanPrice || 0,
     images: instrument?.images || [],
     mainImage: instrument?.mainImage || "",
     available: instrument?.available ?? true,
@@ -140,13 +142,15 @@ export default function InstrumentForm({
         : "/api/instruments";
       const method = isEdit ? "PUT" : "POST";
 
+      const payload = {
+        ...formData,
+        mostSold: !!formData.mostSold,
+      };
+
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          mostSold: !!formData.mostSold,
-        }),
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json();
@@ -215,32 +219,165 @@ export default function InstrumentForm({
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">Price *</label>
-              <Input
-                type="number"
-                value={formData.price}
-                onChange={(e) =>
-                  setFormData({ ...formData, price: Number(e.target.value) })
-                }
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Currency</label>
-              <select
-                className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                value={formData.currency}
-                onChange={(e) =>
-                  setFormData({ ...formData, currency: e.target.value })
-                }
-              >
-                <option value="INR">INR (₹)</option>
-                <option value="USD">USD ($)</option>
-              </select>
-            </div>
+          <div>
+            <label className="block text-sm font-medium mb-2">Currency</label>
+            <select
+              className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              value={formData.currency}
+              onChange={(e) =>
+                setFormData({ ...formData, currency: e.target.value })
+              }
+            >
+              <option value="INR">INR (₹)</option>
+              <option value="USD">USD ($)</option>
+            </select>
           </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Quantity-Based Rates</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {formData.rates && formData.rates.length > 0 && (
+                <div className="space-y-3">
+                  {formData.rates.map((rate, index) => (
+                    <div key={index} className="grid md:grid-cols-4 gap-4 items-end p-3 border rounded-md">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Min Quantity</label>
+                        <Input
+                          type="number"
+                          min={index > 0 ? (formData.rates || [])[index - 1].maxQuantity + 1 : 1}
+                          value={rate.minQuantity}
+                          onChange={(e) => {
+                            const newRates = [...(formData.rates || [])];
+                            const newMinQty = Number(e.target.value);
+
+                            // Calculate the minimum allowed value
+                            const minAllowed = index > 0 ? newRates[index - 1].maxQuantity + 1 : 1;
+
+                            // Only update if the new value is valid
+                            if (newMinQty >= minAllowed) {
+                              newRates[index].minQuantity = newMinQty;
+                              // Ensure max quantity is at least equal to min quantity
+                              if (newRates[index].maxQuantity < newMinQty) {
+                                newRates[index].maxQuantity = newMinQty;
+                              }
+                              setFormData({ ...formData, rates: newRates });
+                            }
+                          }}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Max Quantity</label>
+                        <Input
+                          type="number"
+                          min={rate.minQuantity}
+                          value={rate.maxQuantity}
+                          onChange={(e) => {
+                            const newRates = [...(formData.rates || [])];
+                            const newMaxQty = Number(e.target.value);
+                            // Validate max quantity is not less than min quantity
+                            if (newMaxQty >= rate.minQuantity) {
+                              newRates[index].maxQuantity = newMaxQty;
+                              setFormData({ ...formData, rates: newRates });
+                            }
+                          }}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Price</label>
+                        <Input
+                          type="number"
+                          min="0"
+                          value={rate.price}
+                          onChange={(e) => {
+                            const newRates = [...(formData.rates || [])];
+                            newRates[index].price = Number(e.target.value);
+                            setFormData({ ...formData, rates: newRates });
+                          }}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          onClick={() => {
+                            const newRates = formData.rates?.filter((_, i) => i !== index) || [];
+                            setFormData({ ...formData, rates: newRates });
+                          }}
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Auto-generated "Greater than" rate */}
+                  {formData.rates.length > 0 && (
+                    <div className="grid md:grid-cols-4 gap-4 items-end p-3 border rounded-md bg-gray-50">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-gray-600">Min Quantity</label>
+                        <Input
+                          type="number"
+                          value={formData.rates[formData.rates.length - 1].maxQuantity + 1}
+                          disabled
+                          className="bg-gray-100"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-gray-600">Max Quantity</label>
+                        <Input
+                          type="text"
+                          value="∞ (Greater than)"
+                          disabled
+                          className="bg-gray-100"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Price</label>
+                        <Input
+                          type="number"
+                          min="0"
+                          value={formData.greaterThanPrice || 0}
+                          onChange={(e) => {
+                            setFormData({ ...formData, greaterThanPrice: Number(e.target.value) });
+                          }}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <span className="text-xs text-gray-500 italic">Auto-generated</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  const currentRates = formData.rates || [];
+                  let newMinQty = 1;
+                  let newMaxQty = 10;
+
+                  // If there are existing rates, set new min to previous max + 1
+                  if (currentRates.length > 0) {
+                    const lastRate = currentRates[currentRates.length - 1];
+                    newMinQty = lastRate.maxQuantity + 1;
+                    newMaxQty = newMinQty + 9; // Default range of 10
+                  }
+
+                  const newRates = [...currentRates, { minQuantity: newMinQty, maxQuantity: newMaxQty, price: 0 }];
+                  setFormData({ ...formData, rates: newRates });
+                }}
+              >
+                Add Rate
+              </Button>
+            </CardContent>
+          </Card>
 
           <Card>
             <CardHeader>

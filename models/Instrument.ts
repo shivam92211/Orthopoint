@@ -27,13 +27,37 @@ const InstrumentSchema = new Schema<Instrument>(
     },
     price: {
       type: Number,
-      required: [true, "Please provide price"],
+      required: false,
       min: 0,
     },
     currency: {
       type: String,
       enum: ["INR", "USD"],
       default: "INR",
+    },
+    rates: [
+      {
+        minQuantity: {
+          type: Number,
+          required: true,
+          min: 1,
+        },
+        maxQuantity: {
+          type: Number,
+          required: true,
+          min: 1,
+        },
+        price: {
+          type: Number,
+          required: true,
+          min: 0,
+        },
+      },
+    ],
+    greaterThanPrice: {
+      type: Number,
+      required: false,
+      min: 0,
     },
     images: {
       type: [String],

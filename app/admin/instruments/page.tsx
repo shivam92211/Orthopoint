@@ -104,7 +104,9 @@ export default function InstrumentsManagement() {
                     <p className="text-sm text-gray-500">{instrument.category}</p>
                     <p className="text-sm font-medium mt-1">
                       {instrument.currency === "INR" ? "₹" : "$"}
-                      {instrument.price.toLocaleString()}
+                      {instrument.rates && instrument.rates.length > 0
+                        ? instrument.rates[0].price.toLocaleString()
+                        : instrument.price?.toLocaleString() || "0"}
                     </p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span

@@ -3,7 +3,8 @@
 import { Metadata } from "next";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Send, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Send, Clock, Store } from "lucide-react";
+import { FaWhatsapp, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa6";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -287,37 +288,50 @@ export default function ContactPage() {
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
             <a
-              href="https://www.facebook.com/orthopoint"
+              href="https://wa.me/918108419746"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white p-4 rounded-xl shadow-sm border border-border hover:shadow-md hover:border-primary transition-all group"
+              aria-label="WhatsApp"
             >
-              <Facebook className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
+              <FaWhatsapp className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
             </a>
             <a
-              href="https://www.twitter.com/orthopoint"
+              href="https://www.instagram.com/orthopoint.in"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white p-4 rounded-xl shadow-sm border border-border hover:shadow-md hover:border-primary transition-all group"
+              aria-label="Instagram"
             >
-              <Twitter className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
+              <FaInstagram className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
             </a>
             <a
+              href="https://www.youtube.com/@orthopoint-in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-4 rounded-xl shadow-sm border border-border hover:shadow-md hover:border-primary transition-all group"
+              aria-label="YouTube"
+            >
+              <FaYoutube className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
+            </a>
+            <a
+              href="https://www.indiamart.com/ortho-point"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-4 rounded-xl shadow-sm border border-border hover:shadow-md hover:border-primary transition-all group"
+              aria-label="IndiaMART"
+            >
+              <Store className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
+            </a>
+            {/* <a
               href="https://www.linkedin.com/company/orthopoint"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white p-4 rounded-xl shadow-sm border border-border hover:shadow-md hover:border-primary transition-all group"
+              aria-label="LinkedIn"
             >
-              <Linkedin className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
-            </a>
-            <a
-              href="https://www.instagram.com/orthopoint"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white p-4 rounded-xl shadow-sm border border-border hover:shadow-md hover:border-primary transition-all group"
-            >
-              <Instagram className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
-            </a>
+              <FaLinkedin className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
+            </a> */}
           </div>
         </div>
       </section>
