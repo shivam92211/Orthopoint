@@ -115,7 +115,7 @@ export default async function Footer() {
               </li> */}
               <li>
                 <Link href="/catalog" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  Catalog
+                  Catalogue
                 </Link>
               </li>
               <li>
@@ -195,7 +195,7 @@ export default async function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/80">
             <p>© 2024 OrthoPoint. All rights reserved.</p>
-            <p>Created by <a href="https://portfolio-shivam92211s-projects.vercel.app/" className="hover:text-secondary transition-colors">Shivam Vishwakarma</a> </p>
+            <p>Created by <a href="https://aivynx.com/" className="hover:text-secondary text-blue-400 transition-colors">Aivynx</a> </p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-secondary transition-colors">
                 Privacy Policy

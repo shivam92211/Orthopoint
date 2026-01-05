@@ -10,6 +10,35 @@ interface InstrumentCardProps {
 }
 
 export default function InstrumentCard({ instrument }: InstrumentCardProps) {
+  // Get minimum price - prioritize greaterThanPrice, then rates, then base price
+  const getMinPrice = () => {
+    // If greaterThanPrice exists and is greater than 0, use it as the minimum
+    if (instrument.greaterThanPrice && instrument.greaterThanPrice > 0) {
+      return instrument.greaterThanPrice;
+    }
+
+    const allPrices: number[] = [];
+
+    // Add prices from rates array
+    if (instrument.rates && instrument.rates.length > 0) {
+      instrument.rates.forEach(rate => {
+        if (rate.price > 0) {
+          allPrices.push(rate.price);
+        }
+      });
+    }
+
+    // Add base price if it exists
+    if (instrument.price && instrument.price > 0) {
+      allPrices.push(instrument.price);
+    }
+
+    // Return minimum price or 0
+    return allPrices.length > 0 ? Math.min(...allPrices) : 0;
+  };
+
+  const minPrice = getMinPrice();
+
   return (
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50 group">
       {/* Mobile Horizontal Layout */}
@@ -61,13 +90,9 @@ export default function InstrumentCard({ instrument }: InstrumentCardProps) {
           <div>
             <div className="flex items-baseline gap-1 mb-2">
               <p className="text-lg font-bold text-primary">
-                {formatPrice(
-                  instrument.rates && instrument.rates.length > 0
-                    ? instrument.rates[0].price
-                    : instrument.price || 0,
-                  instrument.currency
-                )}
+                {formatPrice(minPrice, instrument.currency)}
               </p>
+              <span className="text-xs text-muted-foreground">onwards</span>
             </div>
 
             <div className="flex gap-2">
@@ -151,13 +176,9 @@ export default function InstrumentCard({ instrument }: InstrumentCardProps) {
 
           <div className="flex items-baseline gap-2">
             <p className="text-2xl font-bold text-primary">
-              {formatPrice(
-                instrument.rates && instrument.rates.length > 0
-                  ? instrument.rates[0].price
-                  : instrument.price || 0,
-                instrument.currency
-              )}
+              {formatPrice(minPrice, instrument.currency)}
             </p>
+            <span className="text-sm text-muted-foreground">onwards</span>
           </div>
         </CardContent>
 

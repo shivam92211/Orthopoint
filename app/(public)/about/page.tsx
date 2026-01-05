@@ -136,11 +136,11 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Upgrade Your Surgical Inventory?</h2>
           <p className="text-xl mb-8">
-            Explore our comprehensive catalog or contact our team for a personalized quote.
+            Explore our comprehensive catalogue or contact our team for a personalized quote.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="default" asChild>
-              <Link href="/catalog">View Catalog</Link>
+              <Link href="/catalog">View Catalogue</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent hover:bg-primary hover:text-white" asChild>
               <Link href="/contact">Contact Sales</Link>

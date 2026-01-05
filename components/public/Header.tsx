@@ -17,22 +17,32 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             {/* Contact Info */}
-            <div className="flex items-center gap-2 sm:gap-3 md:gap-6">
-              <a href="tel:+918108419746" className="flex items-center gap-1 sm:gap-2 hover:text-secondary transition-colors">
-                <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="hidden sm:inline text-xs sm:text-sm">+91 81084 19746</span>
+            <div className="flex items-center gap-3 md:gap-4 lg:gap-6">
+              <a href="tel:+918108419746" className="flex items-center gap-1.5 hover:text-secondary transition-colors">
+                <Phone className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs sm:text-sm whitespace-nowrap">+91 81084 19746</span>
                 <span className="sm:hidden text-xs">Call</span>
               </a>
-              <a href="mailto:orthopoint.in@gmail.com" className="flex items-center gap-1 sm:gap-2 hover:text-secondary transition-colors">
-                <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="hidden sm:inline text-xs sm:text-sm">orthopoint.in@gmail.com</span>
+
+              <div className="h-4 w-px bg-primary-foreground/30 hidden sm:block"></div>
+
+              <a href="mailto:orthopoint.in@gmail.com" className="flex items-center gap-1.5 hover:text-secondary transition-colors">
+                <Mail className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                <span className="hidden sm:inline text-xs sm:text-sm whitespace-nowrap">orthopoint.in@gmail.com</span>
                 <span className="sm:hidden text-xs">Email</span>
               </a>
+
+              <div className="h-4 w-px bg-primary-foreground/30 hidden lg:block"></div>
+
+              {/* GST Number */}
+              <div className="hidden lg:flex items-center">
+                <span className="text-xs sm:text-sm font-medium whitespace-nowrap">GST: 27AMKPM4700B1ZF</span>
+              </div>
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="text-xs hidden md:inline">Follow us:</span>
+            <div className="flex items-center gap-3 md:gap-4">
+              <span className="text-xs hidden md:inline whitespace-nowrap">Follow us:</span>
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <a
                   href="https://wa.me/918108419746"
@@ -114,7 +124,7 @@ export default function Header() {
               Products
             </Link> */}
             <Link href="/catalog" className="text-foreground hover:text-primary font-medium transition-colors">
-              Catalog
+              Catalogue
             </Link>
             <Link href="/about" className="text-foreground hover:text-primary font-medium transition-colors">
               About Us
@@ -172,7 +182,7 @@ export default function Header() {
               className="block py-2 text-foreground hover:text-primary font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Catalog
+              Catalogue
             </Link>
             <Link
               href="/about"

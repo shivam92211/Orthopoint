@@ -555,7 +555,7 @@ export default function InstrumentForm({
                   setFormData({ ...formData, mostSold: e.target.checked })
                 }
               />
-              <span className="text-sm">Most Sold</span>
+              <span className="text-sm">Most Ordered</span>
             </label>
           </div>
 

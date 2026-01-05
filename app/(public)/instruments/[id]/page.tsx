@@ -255,7 +255,9 @@ export default function InstrumentDetailsPage() {
             <div className="flex items-baseline gap-2 mb-6">
               <span className="text-4xl font-bold text-primary">
                 {formatPrice(
-                  instrument.rates && instrument.rates.length > 0
+                  instrument.greaterThanPrice && instrument.greaterThanPrice > 0
+                    ? instrument.greaterThanPrice
+                    : instrument.rates && instrument.rates.length > 0
                     ? instrument.rates[0].price
                     : instrument.price || 0,
                   instrument.currency

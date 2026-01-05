@@ -46,7 +46,7 @@ export default function MostSoldSlider() {
   return (
     <section className="py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h3 className="text-2xl font-semibold mb-4">Most Sold</h3>
+        <h3 className="text-2xl font-semibold mb-4">Most Ordered</h3>
 
         {/* Mobile View - Slider (single item) */}
         <div className="relative w-full overflow-hidden md:hidden">

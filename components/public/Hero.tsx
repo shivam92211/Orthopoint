@@ -1,7 +1,59 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Shield } from "lucide-react";
+import { ArrowRight, Shield, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+
+// Animated Rating Component
+function AnimatedRating({ totalStars = 5, rating = 4.5 }: { totalStars?: number; rating?: number }) {
+  const [filledStars, setFilledStars] = useState(0);
+
+  useEffect(() => {
+    // Animate stars one by one
+    let currentStar = 0;
+    const interval = setInterval(() => {
+      currentStar += 1;
+      setFilledStars(currentStar);
+      if (currentStar >= Math.ceil(rating)) {
+        clearInterval(interval);
+      }
+    }, 300); // Each star fills after 300ms
+
+    return () => clearInterval(interval);
+  }, [rating]);
+
+  return (
+    <div className="flex items-center gap-1">
+      {Array.from({ length: totalStars }).map((_, index) => {
+        const starNumber = index + 1;
+        const isFilled = starNumber <= filledStars;
+        const isPartial = starNumber === Math.ceil(rating) && rating % 1 !== 0;
+
+        return (
+          <div key={index} className="relative">
+            <Star
+              className={`h-4 w-4 transition-all duration-500 ${
+                isFilled
+                  ? 'fill-yellow-400 text-yellow-400 scale-100'
+                  : 'fill-none text-gray-300 scale-75'
+              }`}
+            />
+            {isPartial && isFilled && (
+              <div
+                className="absolute inset-0 overflow-hidden"
+                style={{ width: `${(rating % 1) * 100}%` }}
+              >
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function Hero() {
   return (
@@ -22,7 +74,36 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-light/85 to-primary/90" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 pb-16 md:pb-24 relative z-10">
+        {/* Indiamart Logo and Rating - Centered at Top */}
+        <div className="flex justify-center mb-6">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 border border-white/30">
+            {/* Mobile: Column | Desktop: Row */}
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              {/* Indiamart Logo - Square */}
+              <div className="relative w-32 h-32 bg-white rounded-xl p-4 shadow-md flex-shrink-0">
+                <Image
+                  src="/indiamart-logo-hd.png"
+                  alt="Indiamart"
+                  fill
+                  className="object-contain p-2"
+                />
+              </div>
+
+              {/* Divider - Only visible on desktop */}
+              <div className="hidden md:block h-24 w-px bg-gray-300"></div>
+
+              {/* Rating Section */}
+              <div className="flex flex-col items-center gap-2">
+                <AnimatedRating totalStars={5} rating={4.5} />
+                <div className="text-sm text-gray-700 font-semibold">
+                  4.5/5 Rating
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="text-white">
@@ -49,7 +130,7 @@ export default function Hero() {
               >
                 <Link href="/catalog">
                   <span className="inline-flex items-center justify-center gap-3">
-                    <span>Browse Catalog</span>
+                    <span>Browse Catalogue</span>
                     <ArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>

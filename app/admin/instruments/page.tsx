@@ -125,7 +125,7 @@ export default function InstrumentsManagement() {
                       )}
                         {instrument.mostSold && (
                           <span className="text-xs px-2 py-1 rounded bg-amber-100 text-amber-800">
-                            Most Sold
+                            Most Ordered
                           </span>
                         )}
                     </div>

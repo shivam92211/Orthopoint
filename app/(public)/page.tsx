@@ -117,7 +117,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Most Sold Slider */}
+      {/* Most Ordered Slider */}
       <MostSoldSlider />
 
       {/* Regular Clients */}
