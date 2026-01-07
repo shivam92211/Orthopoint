@@ -17,7 +17,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">About OrthoPoint</h1>
           <p className="text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-            Your trusted partner in orthopaedic excellence. dedicated to providing high-quality surgical instruments that improve patient outcomes.
+            Your trusted partner in Manufacturer of orthopaedic & Surgical intruments. dedicated to providing high-quality surgical instruments that improve patient outcomes.
           </p>
         </div>
       </section>
@@ -40,7 +40,7 @@ export default function AboutPage() {
               <p className="text-muted-foreground leading-relaxed">
                 Our mission is simple: to empower healthcare professionals with the tools they need to restore mobility and improve lives. We bridge the gap between innovative manufacturing and the operating room, ensuring that every instrument we deliver contributes to a successful surgical outcome.
               </p>
-              
+
               <div className="pt-4">
                 <Button size="lg" variant="default" asChild>
                   <Link href="/contact">Get in Touch</Link>
@@ -117,8 +117,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-             {/* Feature 6 */}
-             {/* <div className="bg-white p-8 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow">
+            {/* Feature 6 */}
+            {/* <div className="bg-white p-8 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
                 <CheckCircle2 className="h-6 w-6 text-primary" />
               </div>

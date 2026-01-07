@@ -3,20 +3,15 @@ import Image from "next/image";
 import { Phone, Mail, MapPin, Store } from "lucide-react";
 import { FaWhatsapp, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa6";
 import { Category } from "@/types";
+import dbConnect from "@/lib/mongodb";
+import CategoryModel from "@/models/Category";
 
 async function getCategories(): Promise<Category[]> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/categories`, {
-      cache: 'no-store',
-    });
-
-    if (!response.ok) {
-      return [];
-    }
-
-    const data = await response.json();
-    return data.data || [];
+    await dbConnect();
+    const categories = await CategoryModel.find().sort({ name: 1 }).lean();
+    // Convert MongoDB documents to plain objects
+    return JSON.parse(JSON.stringify(categories));
   } catch (error) {
     console.error('Error fetching categories:', error);
     return [];
@@ -44,7 +39,7 @@ export default async function Footer() {
               </div>
               <div>
                 <div className="font-bold text-xl">OrthoPoint</div>
-                <div className="text-xs text-primary-foreground/80">Orthopaedic Excellence</div>
+                <div className="text-xs text-primary-foreground/80">Manufacturer of orthopaedic & Surgical intruments</div>
               </div>
             </div>
             <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4">

@@ -3,6 +3,7 @@
 import { useEffect, useState, Suspense, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search, ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { Instrument, Category } from "@/types";
 import InstrumentCard from "@/components/public/InstrumentCard";
 
@@ -123,7 +124,7 @@ function CatalogContent() {
                   <span className="flex items-center gap-2">
                     {selectedCategory ? (
                       <>
-                        <span>{categories.find(c => c.name === selectedCategory)?.icon || "🏥"}</span>
+                        <Image src="/logo.jpg" alt="" width={20} height={20} className="rounded-sm" />
                         <span className="text-sm font-medium">{selectedCategory}</span>
                       </>
                     ) : (
@@ -141,9 +142,8 @@ function CatalogContent() {
                         setSelectedCategory(null);
                         setIsCategoryDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-3 hover:bg-muted transition-colors ${
-                        selectedCategory === null ? "bg-primary/10 font-semibold" : ""
-                      }`}
+                      className={`w-full text-left px-4 py-3 hover:bg-muted transition-colors ${selectedCategory === null ? "bg-primary/10 font-semibold" : ""
+                        }`}
                     >
                       All Products
                     </button>
@@ -154,11 +154,10 @@ function CatalogContent() {
                           setSelectedCategory(category.name);
                           setIsCategoryDropdownOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-3 hover:bg-muted transition-colors flex items-center gap-3 ${
-                          selectedCategory === category.name ? "bg-primary/10 font-semibold" : ""
-                        }`}
+                        className={`w-full text-left px-4 py-3 hover:bg-muted transition-colors flex items-center gap-3 ${selectedCategory === category.name ? "bg-primary/10 font-semibold" : ""
+                          }`}
                       >
-                        <span className="text-xl">{category.icon || "🏥"}</span>
+                        <Image src="/logo.jpg" alt="" width={24} height={24} className="rounded-sm" />
                         <span className="text-sm">{category.name}</span>
                       </button>
                     ))}

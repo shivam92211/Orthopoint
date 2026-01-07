@@ -35,7 +35,7 @@ export default function Header() {
               <div className="h-4 w-px bg-primary-foreground/30 hidden lg:block"></div>
 
               {/* GST Number */}
-              <div className="hidden lg:flex items-center">
+              <div className="flex items-center">
                 <span className="text-xs sm:text-sm font-medium whitespace-nowrap">GST: 27AMKPM4700B1ZF</span>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function Header() {
             </div>
             <div>
               <div className="font-bold text-xl text-primary">OrthoPoint</div>
-              <div className="text-xs text-muted-foreground -mt-1">Orthopaedic Excellence</div>
+              <div className="text-xs text-muted-foreground -mt-1">Manufacturer of orthopaedic & Surgical intruments</div>
             </div>
           </Link>
 
