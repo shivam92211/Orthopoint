@@ -134,7 +134,7 @@ export default async function Footer() {
                 displayCategories.map((category) => (
                   <li key={category._id}>
                     <Link
-                      href={`/?category=${encodeURIComponent(category.name)}`}
+                      href={`/catalog?category=${encodeURIComponent(category.name)}`}
                       className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
                     >
                       {category.icon && <span className="mr-1">{category.icon}</span>}

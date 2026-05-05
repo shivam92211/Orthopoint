@@ -67,7 +67,7 @@ export default function CategoryShowcase() {
           {categories.map((category) => (
             <Link
               key={category._id}
-              href={`/?category=${encodeURIComponent(category.name)}`}
+              href={`/catalog?category=${encodeURIComponent(category.name)}`}
               className="group"
             >
               <div className="bg-gradient-to-br from-muted to-white rounded-xl p-6 border-2 border-border hover:border-primary transition-all hover:shadow-lg h-full flex flex-col items-center text-center">

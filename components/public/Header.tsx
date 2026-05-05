@@ -34,9 +34,11 @@ export default function Header() {
 
               <div className="h-4 w-px bg-primary-foreground/30 hidden lg:block"></div>
 
-              {/* GST Number */}
-              <div className="flex items-center">
+              {/* Business Registrations */}
+              <div className="flex items-center gap-3 md:gap-4 lg:gap-6">
                 <span className="text-xs sm:text-sm font-medium whitespace-nowrap">GST: 27AMKPM4700B1ZF</span>
+                <div className="h-4 w-px bg-primary-foreground/30 hidden sm:block"></div>
+                <span className="text-xs sm:text-sm font-medium whitespace-nowrap hidden md:block">UDYAM: UDYAM-MH-33-0182710</span>
               </div>
             </div>
 
@@ -111,7 +113,7 @@ export default function Header() {
             </div>
             <div>
               <div className="font-bold text-xl text-primary">OrthoPoint</div>
-              <div className="text-xs text-muted-foreground -mt-1">Manufacturer of orthopaedic & Surgical intruments</div>
+              <div className="text-xs text-muted-foreground -mt-1">Fabricator of Orthopaedic & Surgical Instruments</div>
             </div>
           </Link>
 

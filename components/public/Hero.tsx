@@ -75,7 +75,13 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 pb-16 md:pb-24 relative z-10">
         {/* Rating Cards - Centered at Top */}
-        <div className="flex justify-center mb-6">
+        <div className="flex flex-col items-center mb-6">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-4 shadow-sm">
+            <Shield className="h-3.5 w-3.5 text-secondary" />
+            <span className="text-white text-xs sm:text-sm font-semibold tracking-wide">
+              UDYAM-MH-33-0182710
+            </span>
+          </div>
           <div className="flex flex-row gap-2 sm:gap-4">
             {/* IndiaMART Rating Card */}
             <a
