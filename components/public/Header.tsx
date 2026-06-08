@@ -131,6 +131,9 @@ export default function Header() {
             <Link href="/about" className="text-foreground hover:text-primary font-medium transition-colors">
               About Us
             </Link>
+            <Link href="/blog" className="text-foreground hover:text-primary font-medium transition-colors">
+              Blog
+            </Link>
             <Link href="/contact" className="text-foreground hover:text-primary font-medium transition-colors">
               Contact
             </Link>
@@ -192,6 +195,13 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               About Us
+            </Link>
+            <Link
+              href="/blog"
+              className="block py-2 text-foreground hover:text-primary font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Blog
             </Link>
             <Link
               href="/contact"
