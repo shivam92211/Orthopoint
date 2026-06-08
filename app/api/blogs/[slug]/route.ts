@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import dbConnect from "@/lib/mongodb";
 import BlogModel from "@/models/Blog";
 import mongoose from "mongoose";
+import { deleteImage } from "@/lib/cloudinary";
 
 function calcReadTime(content: string): number {
   const wordCount = content.trim().split(/\s+/).length;
@@ -129,6 +130,16 @@ export async function DELETE(
         { success: false, error: "Blog not found" },
         { status: 404 }
       );
+    }
+
+    // Delete cover image from Cloudinary if it exists
+    if (blog.coverImage?.publicId) {
+      try {
+        await deleteImage(blog.coverImage.publicId);
+      } catch (err) {
+        // Log but don't fail the request — the DB record is already gone
+        console.error("Cloudinary delete failed:", err);
+      }
     }
 
     return NextResponse.json({
