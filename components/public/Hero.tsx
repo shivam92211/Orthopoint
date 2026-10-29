@@ -165,7 +165,7 @@ export default function Hero() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-wrap gap-4">
               <Button
                 size="lg"
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg group"
@@ -187,6 +187,26 @@ export default function Hero() {
                 <a href="https://wa.me/918108419746?text=Hi,%20I%20would%20like%20to%20request%20a%20quote%20for%20orthopaedic%20instruments." target="_blank" rel="noopener noreferrer">
                   Request Quote
                 </a>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+                asChild
+              >
+                <Link href="/gift">
+                  Gifting Service
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+                asChild
+              >
+                <Link href="/refurbishment">
+                  Instrument Refurbishment
+                </Link>
               </Button>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { LayoutDashboard, Package, FolderOpen, LogOut, Menu, X, ChevronLeft, ChevronRight, Users, FileText } from "lucide-react";
+import { LayoutDashboard, Package, FolderOpen, LogOut, Menu, X, ChevronLeft, ChevronRight, Users, FileText, Wrench } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 
@@ -67,6 +67,12 @@ function AdminLayoutInner({
       href: "/admin/blogs",
       icon: FileText,
       current: pathname?.startsWith("/admin/blogs"),
+    },
+    {
+      name: "Refurbishment",
+      href: "/admin/refurbishment",
+      icon: Wrench,
+      current: pathname?.startsWith("/admin/refurbishment"),
     },
   ];
 

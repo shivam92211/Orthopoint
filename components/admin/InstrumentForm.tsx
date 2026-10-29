@@ -57,6 +57,8 @@ export default function InstrumentForm({
     available: instrument?.available ?? true,
     featured: instrument?.featured ?? false,
     mostSold: instrument?.mostSold ?? false,
+    catalogType: instrument?.catalogType || "regular",
+    giftingAudience: instrument?.giftingAudience,
     // whatsappNumber is intentionally omitted so server-side default (env WHATSAPP_PHONE_NUMBER) is used when creating
   });
 
@@ -218,6 +220,51 @@ export default function InstrumentForm({
               required
             />
           </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Catalog</CardTitle>
+            </CardHeader>
+            <CardContent className="grid md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Catalog Type *</label>
+                <select
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  value={formData.catalogType}
+                  onChange={(e) => {
+                    const value = e.target.value as "regular" | "gifting";
+                    setFormData({
+                      ...formData,
+                      catalogType: value,
+                      giftingAudience: value === "gifting" ? (formData.giftingAudience || "medical-college") : undefined,
+                    });
+                  }}
+                >
+                  <option value="regular">Regular Catalog</option>
+                  <option value="gifting">Gifting Catalog</option>
+                </select>
+              </div>
+              {formData.catalogType === "gifting" && (
+                <div>
+                  <label className="block text-sm font-medium mb-2">Gifting Audience *</label>
+                  <select
+                    className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    value={formData.giftingAudience || "medical-college"}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        giftingAudience: e.target.value as "medical-college" | "pharma",
+                      })
+                    }
+                    required
+                  >
+                    <option value="medical-college">Medical Colleges</option>
+                    <option value="pharma">Pharmaceutical Companies</option>
+                  </select>
+                </div>
+              )}
+            </CardContent>
+          </Card>
 
           <div>
             <label className="block text-sm font-medium mb-2">Currency</label>

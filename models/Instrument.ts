@@ -83,6 +83,17 @@ const InstrumentSchema = new Schema<Instrument>(
       type: String,
       default: process.env.WHATSAPP_PHONE_NUMBER || "",
     },
+    catalogType: {
+      type: String,
+      enum: ["regular", "gifting"],
+      default: "regular",
+      index: true,
+    },
+    giftingAudience: {
+      type: String,
+      enum: ["medical-college", "pharma"],
+      required: false,
+    },
   },
   {
     timestamps: true,

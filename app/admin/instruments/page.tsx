@@ -15,19 +15,29 @@ import {
 import { CheckCircle, XCircle } from "lucide-react";
 import { Instrument } from "@/types";
 
+type CatalogFilter = "all" | "regular" | "gifting";
+
 export default function InstrumentsManagement() {
   const [instruments, setInstruments] = useState<Instrument[]>([]);
   const [loading, setLoading] = useState(true);
+  const [catalogFilter, setCatalogFilter] = useState<CatalogFilter>("all");
   const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; id: string | null; name?: string | null }>({ open: false, id: null, name: null });
   const [messageDialog, setMessageDialog] = useState<{ open: boolean; type: "success" | "error"; message: string }>({ open: false, type: "success", message: "" });
 
   useEffect(() => {
     fetchInstruments();
-  }, []);
+  }, [catalogFilter]);
 
   const fetchInstruments = async () => {
+    setLoading(true);
     try {
-      const res = await fetch("/api/instruments");
+      const url =
+        catalogFilter === "all"
+          ? "/api/instruments?catalogType=all"
+          : catalogFilter === "gifting"
+            ? "/api/instruments?catalogType=gifting"
+            : "/api/instruments";
+      const res = await fetch(url);
       const data = await res.json();
 
       if (data.success) {
@@ -76,7 +86,27 @@ export default function InstrumentsManagement() {
         </Link>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-6 flex gap-2 flex-wrap">
+        {([
+          { v: "all", label: "All" },
+          { v: "regular", label: "Regular Catalog" },
+          { v: "gifting", label: "Gifting Catalog" },
+        ] as { v: CatalogFilter; label: string }[]).map((t) => (
+          <button
+            key={t.v}
+            onClick={() => setCatalogFilter(t.v)}
+            className={`px-3 py-1.5 text-sm rounded-md border transition-colors ${
+              catalogFilter === t.v
+                ? "bg-primary text-white border-primary"
+                : "bg-white text-foreground border-gray-300 hover:border-primary"
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-6">
       {loading ? (
         <div className="text-center py-12">Loading...</div>
       ) : instruments.length === 0 ? (
@@ -126,6 +156,13 @@ export default function InstrumentsManagement() {
                         {instrument.mostSold && (
                           <span className="text-xs px-2 py-1 rounded bg-amber-100 text-amber-800">
                             Most Ordered
+                          </span>
+                        )}
+                        {instrument.catalogType === "gifting" && (
+                          <span className="text-xs px-2 py-1 rounded bg-purple-100 text-purple-800">
+                            Gifting
+                            {instrument.giftingAudience === "medical-college" && " · Medical College"}
+                            {instrument.giftingAudience === "pharma" && " · Pharma"}
                           </span>
                         )}
                     </div>

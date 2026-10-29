@@ -17,8 +17,25 @@ export async function GET(request: NextRequest) {
     const featured = searchParams.get("featured");
     const mostSold = searchParams.get("mostSold");
     const search = searchParams.get("search");
+    const catalogType = searchParams.get("catalogType");
+    const giftingAudience = searchParams.get("giftingAudience");
 
     let query: any = {};
+
+    // Default to regular catalog so existing pages exclude gifting products
+    if (catalogType === "gifting") {
+      query.catalogType = "gifting";
+      if (giftingAudience) {
+        query.giftingAudience = giftingAudience;
+      }
+    } else if (catalogType === "all") {
+      // no filter
+    } else {
+      query.$or = [
+        { catalogType: { $exists: false } },
+        { catalogType: "regular" },
+      ];
+    }
 
     if (category) {
       query.category = category;

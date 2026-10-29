@@ -27,6 +27,43 @@ export interface Instrument {
   featured: boolean;
   mostSold: boolean;
   whatsappNumber: string;
+  catalogType?: "regular" | "gifting";
+  giftingAudience?: "medical-college" | "pharma";
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export type RefurbishmentStatus =
+  | "new"
+  | "under_review"
+  | "assessment_required"
+  | "quotation_sent"
+  | "approved"
+  | "in_progress"
+  | "completed"
+  | "rejected";
+
+export interface RefurbishmentRequest {
+  _id?: string;
+  customerName: string;
+  organizationName?: string;
+  email: string;
+  phone: string;
+  customerCategory:
+    | "surgeon"
+    | "hospital"
+    | "dealer"
+    | "distributor"
+    | "other";
+  instrumentName: string;
+  instrumentCategory?: string;
+  quantity: number;
+  condition: string;
+  reportedIssue?: string;
+  images: string[];
+  notes?: string;
+  status: RefurbishmentStatus;
+  adminNotes?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
